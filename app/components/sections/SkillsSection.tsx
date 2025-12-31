@@ -63,17 +63,17 @@ const skillColors: Record<string, { bg: string; border: string; text: string; ho
 
 export function SkillsSection() {
   return (
-    <section id="skills" className="relative py-32 px-6">
+    <section id="skills" className="relative py-20 sm:py-32 px-4 sm:px-6">
       <div className="max-w-4xl mx-auto">
         {/* Section header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-12 sm:mb-16">
           <span className="inline-block px-4 py-1.5 rounded-full text-xs font-medium tracking-wider uppercase bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 mb-4">
             Skills
           </span>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 tracking-tight">
             Tech Stack
           </h2>
-          <p className="text-gray-400 max-w-2xl mx-auto text-lg">
+          <p className="text-gray-400 max-w-2xl mx-auto text-base sm:text-lg">
             Technologies and tools I work with
           </p>
         </div>

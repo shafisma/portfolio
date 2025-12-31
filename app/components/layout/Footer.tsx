@@ -1,15 +1,15 @@
 export function Footer() {
   return (
-    <footer className="relative py-8 px-6">
+    <footer className="relative py-8 px-4 sm:px-6">
       <div className="max-w-6xl mx-auto">
-        <div className="glass-card rounded-2xl px-8 py-6">
+        <div className="glass-card rounded-2xl px-4 py-6 sm:px-8">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
             <div className="flex items-center gap-2">
               <span className="text-lg font-semibold text-white">
                 shafi<span className="text-indigo-400">.</span>
               </span>
             </div>
-            <p className="text-sm text-gray-500">
+            <p className="text-sm text-gray-500 text-center sm:text-left">
               © {new Date().getFullYear()} Shafi. Built with Next.js & Tailwind CSS
             </p>
             <div className="flex items-center gap-1 text-sm text-gray-500">

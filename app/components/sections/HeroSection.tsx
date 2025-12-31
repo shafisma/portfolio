@@ -2,10 +2,10 @@ import { GithubIcon, XIcon, InstagramIcon } from "../icons";
 
 export function HeroSection() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center px-6 pt-20">
-      <div className="text-center max-w-4xl mx-auto">
+    <section className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 pt-20">
+      <div className="text-center max-w-4xl mx-auto w-full">
         {/* Status badge */}
-        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card mb-8 animate-fade-in-up">
+        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card mb-6 sm:mb-8 animate-fade-in-up">
           <span className="relative flex h-2 w-2">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
             <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
@@ -14,9 +14,9 @@ export function HeroSection() {
         </div>
 
         {/* Main heading */}
-        <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-6 tracking-tight animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
+        <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-6 tracking-tight animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
           <span className="text-white">Hi, I&apos;m </span>
-          <span className="relative">
+          <span className="relative inline-block">
             <span className="bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent animate-gradient">
               Shafi
             </span>
@@ -33,7 +33,7 @@ export function HeroSection() {
         </h1>
 
         {/* Subtitle */}
-        <p className="text-lg sm:text-xl md:text-2xl text-gray-400 mb-10 max-w-2xl mx-auto leading-relaxed animate-fade-in-up font-light" style={{ animationDelay: '0.2s' }}>
+        <p className="text-base sm:text-xl md:text-2xl text-gray-400 mb-10 max-w-2xl mx-auto leading-relaxed animate-fade-in-up font-light px-4 sm:px-0" style={{ animationDelay: '0.2s' }}>
           Passionate about crafting elegant solutions through code.
           <br className="hidden sm:block" />
           Building the future, one commit at a time.
@@ -71,14 +71,14 @@ export function HeroSection() {
         </div>
 
         {/* CTA Buttons */}
-        <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
+        <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up px-4 sm:px-0" style={{ animationDelay: '0.4s' }}>
           <a
             href="#projects"
             onClick={(e) => {
               e.preventDefault();
               document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" });
             }}
-            className="group inline-flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-xl font-medium text-white hover:opacity-90 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-indigo-500/25"
+            className="group inline-flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-xl font-medium text-white hover:opacity-90 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-indigo-500/25 w-full sm:w-auto"
           >
             View My Work
             <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -91,7 +91,7 @@ export function HeroSection() {
               e.preventDefault();
               document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
             }}
-            className="inline-flex items-center justify-center gap-2 px-8 py-4 glass-card rounded-xl font-medium text-gray-300 hover:text-white hover:bg-white/10 transition-all duration-300"
+            className="inline-flex items-center justify-center gap-2 px-8 py-4 glass-card rounded-xl font-medium text-gray-300 hover:text-white hover:bg-white/10 transition-all duration-300 w-full sm:w-auto"
           >
             Get in Touch
           </a>
