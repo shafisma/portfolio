@@ -10,7 +10,7 @@ export function HeroSection() {
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
             <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
           </span>
-          <span className="text-sm text-gray-300">Available for opportunities</span>
+          <span className="text-sm text-gray-300">Available for Work</span>
         </div>
 
         {/* Main heading */}
@@ -34,9 +34,9 @@ export function HeroSection() {
 
         {/* Subtitle */}
         <p className="text-base sm:text-xl md:text-2xl text-gray-400 mb-10 max-w-2xl mx-auto leading-relaxed animate-fade-in-up font-light px-4 sm:px-0" style={{ animationDelay: '0.2s' }}>
-          Passionate about crafting elegant solutions through code.
+          Passionate about Coding Open Source Projects.
           <br className="hidden sm:block" />
-          Building the future, one commit at a time.
+          I'm just a kid who loves to code and create beautiful things on the web.
         </p>
 
         {/* Social links */}
@@ -93,7 +93,7 @@ export function HeroSection() {
             }}
             className="inline-flex items-center justify-center gap-2 px-8 py-4 glass-card rounded-xl font-medium text-gray-300 hover:text-white hover:bg-white/10 transition-all duration-300 w-full sm:w-auto"
           >
-            Get in Touch
+           Contact Me
           </a>
         </div>
 
