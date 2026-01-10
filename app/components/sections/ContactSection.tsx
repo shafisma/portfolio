@@ -6,21 +6,24 @@ const socialLinks = [
     href: "https://github.com/shafisma",
     icon: GithubIcon,
     username: "@shafisma",
-    color: "hover:border-gray-500/50 hover:bg-gray-500/10",
+    bg: "hover:bg-[#333333] hover:text-white",
+    baseColor: "bg-white",
   },
   {
     name: "X (Twitter)",
     href: "https://x.com/Shafigrate",
     icon: XIcon,
     username: "@Shafigrate",
-    color: "hover:border-gray-400/50 hover:bg-gray-400/10",
+    bg: "hover:bg-black hover:text-white", 
+    baseColor: "bg-white",
   },
   {
     name: "Instagram",
     href: "https://www.instagram.com/sh4fi_dx/",
     icon: InstagramIcon,
     username: "@sh4fi_dx",
-    color: "hover:border-pink-500/50 hover:bg-pink-500/10",
+    bg: "hover:bg-[#E1306C] hover:text-white",
+    baseColor: "bg-white",
   },
 ];
 
@@ -29,35 +32,35 @@ export function ContactSection() {
     <section id="contact" className="relative py-20 sm:py-32 px-4 sm:px-6">
       <div className="max-w-4xl mx-auto">
         {/* Section header */}
-        <div className="text-center mb-12 sm:mb-16">
-          <span className="inline-block px-4 py-1.5 rounded-full text-xs font-medium tracking-wider uppercase bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 mb-4">
+        <div className="text-center mb-16">
+          <span className="inline-block px-4 py-2 border border-accent/20 bg-accent/10 text-accent text-sm font-bold uppercase tracking-wider mb-6 rounded-full">
             Contact
           </span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 tracking-tight">
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-black text-white mb-6 tracking-tight">
             Let&apos;s Connect
           </h2>
-          <p className="text-gray-400 max-w-2xl mx-auto text-base sm:text-lg leading-relaxed">
+          <p className="text-gray-400 font-medium max-w-2xl mx-auto text-lg sm:text-xl leading-relaxed">
             I&apos;m always excited to collaborate on interesting projects or
             discuss new opportunities.
           </p>
         </div>
 
         {/* Social cards */}
-        <div className="grid sm:grid-cols-3 gap-4 max-w-2xl mx-auto">
+        <div className="grid sm:grid-cols-3 gap-6 max-w-3xl mx-auto">
           {socialLinks.map((link, index) => (
             <a
               key={link.name}
               href={link.href}
               target="_blank"
               rel="noopener noreferrer"
-              className={`group glass-card rounded-2xl p-6 text-center transition-all duration-300 hover:-translate-y-1 ${link.color}`}
+              className={`modern-card p-8 text-center bg-white/5 hover:bg-white/10 group`}
               style={{ animationDelay: `${index * 0.1}s` }}
             >
-              <div className="w-12 h-12 mx-auto mb-4 rounded-xl bg-white/5 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                <link.icon className="w-6 h-6 text-gray-400 group-hover:text-white transition-colors" />
+              <div className="w-16 h-16 mx-auto mb-6 rounded-2xl flex items-center justify-center bg-white/5 border border-white/10 group-hover:scale-110 transition-transform duration-300">
+                <link.icon className="w-8 h-8 text-white" />
               </div>
-              <h3 className="font-medium text-white mb-1">{link.name}</h3>
-              <p className="text-sm text-gray-500">{link.username}</p>
+              <h3 className="text-xl font-bold text-white group-hover:text-accent mb-2 uppercase transition-colors">{link.name}</h3>
+              <p className="text-sm font-bold text-gray-500 group-hover:text-gray-300 transition-colors">{link.username}</p>
             </a>
           ))}
         </div>
