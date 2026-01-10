@@ -96,7 +96,7 @@ export function SkillsSection() {
         </div>
 
         {/* Skills grid */}
-        <div className="flex flex-wrap md:justify-center lg:justify-center sm:justify-start gap-3 sm:gap-4">
+        <div className="flex flex-wrap justify-center gap-3 sm:gap-4">
           {skills.map((skill, index) => {
             const colors = skillColors[skill.name] || { bg: "bg-gray-800", text: "text-white", color: "#fff" };
             const icon = skillIcons[skill.name] || <span className="font-bold">?</span>;
@@ -104,16 +104,16 @@ export function SkillsSection() {
             return (
               <div
                 key={skill.name}
-                className={`group flex items-center gap-2.5 px-5 py-2.5 rounded-2xl border border-white/5 hover:border-white/20 bg-[#111] hover:bg-[#1a1a1a] transition-all duration-300 cursor-default shadow-lg shadow-black/50`}
+                className={`group flex items-center gap-2 sm:gap-2.5 px-3 py-2 sm:px-5 sm:py-2.5 rounded-full sm:rounded-2xl border border-white/5 hover:border-white/20 bg-[#111] hover:bg-[#1a1a1a] transition-all duration-300 cursor-default shadow-lg shadow-black/50`}
                 style={{ animationDelay: `${index * 0.05}s` }}
               >
                 <div 
-                  className={`flex items-center justify-center w-6 h-6 rounded-full text-xl`}
+                  className={`flex items-center justify-center w-5 h-5 sm:w-6 sm:h-6 rounded-full text-lg sm:text-xl`}
                   style={{ color: colors.color }}
                 >
                   {icon}
                 </div>
-                <span className="text-sm sm:text-base font-medium text-gray-300 group-hover:text-white transition-colors">{skill.name}</span>
+                <span className="text-xs sm:text-base font-medium text-gray-300 group-hover:text-white transition-colors">{skill.name}</span>
               </div>
             );
           })}

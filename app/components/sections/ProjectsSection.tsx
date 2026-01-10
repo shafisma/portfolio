@@ -13,14 +13,14 @@ export function ProjectsSection() {
     <section id="projects" className="relative py-20 sm:py-32 px-4 sm:px-6">
       <div className="max-w-6xl mx-auto">
         {/* Section header */}
-        <div className="text-center mb-16">
-          <span className="inline-block px-4 py-2 border border-accent/20 bg-accent/10 text-accent text-sm font-bold uppercase tracking-wider mb-6 rounded-full">
+        <div className="text-center mb-12 sm:mb-16">
+          <span className="inline-block px-4 py-2 border border-accent/20 bg-accent/10 text-accent text-xs sm:text-sm font-bold uppercase tracking-wider mb-4 sm:mb-6 rounded-full">
             Portfolio
           </span>
-          <h2 className="text-4xl sm:text-5xl md:text-6xl font-black text-white mb-6 tracking-tight">
+          <h2 className="text-3xl sm:text-5xl md:text-6xl font-black text-white mb-4 sm:mb-6 tracking-tight">
             Featured Projects
           </h2>
-          <p className="text-gray-400 font-medium max-w-2xl mx-auto text-lg sm:text-xl">
+          <p className="text-gray-400 font-medium max-w-2xl mx-auto text-base sm:text-xl">
             A selection of projects I&apos;ve built and contributed to
           </p>
         </div>

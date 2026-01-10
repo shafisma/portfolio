@@ -68,17 +68,17 @@ export function AboutSection() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-min">
           
           {/* 1. Profile Card */}
-          <div className="md:col-span-1 min-h-[400px] rounded-3xl bg-[#111] border border-white/10 p-8 flex flex-col justify-between relative overflow-hidden group">
+          <div className="md:col-span-1 min-h-[350px] md:min-h-[400px] rounded-3xl bg-[#111] border border-white/10 p-6 md:p-8 flex flex-col justify-between relative overflow-hidden group">
             <div className="relative z-10">
-              <h3 className="text-4xl font-serif italic mb-2 tracking-wide">Shafi<span className="text-gray-400 not-italic font-sans font-bold">uzzaman</span></h3>
-              <div className="flex items-center gap-2 text-gray-400 text-sm mb-6">
-                <FiMapPin className="w-4 h-4" />
+              <h3 className="text-3xl md:text-4xl font-serif italic mb-2 tracking-wide">Shafi<span className="text-gray-400 not-italic font-sans font-bold">uzzaman</span></h3>
+              <div className="flex items-center gap-2 text-gray-400 text-xs md:text-sm mb-4 md:mb-6">
+                <FiMapPin className="w-3 h-3 md:w-4 md:h-4" />
                 <span>DHAKA, BD • {currentTime}</span>
               </div>
             </div>
             
             {/* Image Placeholder - simulating the polaroids */}
-            <div className="flex-1 relative min-h-[200px] w-full mt-4 mb-4 perspective-1000">
+            <div className="flex-1 relative min-h-[180px] md:min-h-[200px] w-full mt-2 md:mt-4 mb-4 perspective-1000">
              <div className="absolute left-0 bottom-0 w-24 h-32 bg-gray-800 rounded-lg border-4 border-white transform -rotate-12 hover:rotate-0 transition-all duration-300 z-10 overflow-hidden shadow-lg">
                 <div className="w-full h-full bg-gradient-to-br from-blue-500 to-purple-600 opacity-50"></div>
               </div>
@@ -101,27 +101,27 @@ export function AboutSection() {
             ref={philosophyRef}
             onMouseMove={handlePhilosophyMouseMove}
             onMouseLeave={handlePhilosophyLeave}
-            className="md:col-span-2 min-h-[400px] rounded-3xl bg-[#111] border border-white/10 p-8 md:p-12 relative overflow-hidden flex flex-col hover:border-white/20 transition-colors duration-500 cursor-none"
+            className="md:col-span-2 min-h-[350px] md:min-h-[400px] rounded-3xl bg-[#111] border border-white/10 p-6 md:p-12 relative overflow-hidden flex flex-col hover:border-white/20 transition-colors duration-500 cursor-auto md:cursor-none"
           >
-            <div className="absolute top-8 right-8 flex gap-2">
+            <div className="absolute top-6 right-6 md:top-8 md:right-8 flex flex-wrap justify-end gap-2 max-w-[60%] md:max-w-none">
               {['Motion', 'Type', 'Feedback', 'Craft'].map(tag => (
-                <span key={tag} className="px-3 py-1 rounded-full text-xs font-medium border border-white/10 bg-white/5 text-gray-400">
+                <span key={tag} className="px-2 py-0.5 md:px-3 md:py-1 rounded-full text-[10px] md:text-xs font-medium border border-white/10 bg-white/5 text-gray-400">
                   {tag}
                 </span>
               ))}
             </div>
             
-            <div className="mt-12 relative z-10 pointer-events-none">
-              <div className="flex items-center gap-2 text-gray-500 text-sm font-mono mb-4">
-                <span className="w-4 h-4 rounded-full border border-gray-600 flex items-center justify-center">▶</span>
+            <div className="mt-8 md:mt-12 relative z-10 pointer-events-none">
+              <div className="flex items-center gap-2 text-gray-500 text-xs md:text-sm font-mono mb-2 md:mb-4">
+                <span className="w-3 h-3 md:w-4 md:h-4 rounded-full border border-gray-600 flex items-center justify-center">▶</span>
                 DETAIL-DRIVEN UI
               </div>
-              <h2 className="text-5xl md:text-7xl font-bold leading-tight mb-2">Interfaces</h2>
-              <h2 className="text-5xl md:text-7xl font-serif italic text-gray-400 mb-8">you can feel.</h2>
+              <h2 className="text-4xl md:text-7xl font-bold leading-tight mb-1 md:mb-2">Interfaces</h2>
+              <h2 className="text-4xl md:text-7xl font-serif italic text-gray-400 mb-6 md:mb-8">you can feel.</h2>
               
               <div className="flex flex-col gap-1 max-w-sm ml-auto text-right">
-                <h4 className="text-white font-bold">Micro-interactions</h4>
-                <p className="text-gray-500 text-sm">Subtle movement that confirms intent — never distracting.</p>
+                <h4 className="text-white font-bold text-sm md:text-base">Micro-interactions</h4>
+                <p className="text-gray-500 text-xs md:text-sm">Subtle movement that confirms intent — never distracting.</p>
               </div>
             </div>
             
@@ -152,24 +152,24 @@ export function AboutSection() {
 
 
           {/* 4. Global Timezone Card */}
-          <div className="md:col-span-3 min-h-[300px] rounded-3xl bg-[#080808] border border-white/10 p-8 overflow-hidden relative flex flex-col md:flex-row items-start md:items-center gap-8">
-            <div className="flex-1 space-y-4 z-10">
+          <div className="md:col-span-3 min-h-[300px] rounded-3xl bg-[#080808] border border-white/10 p-6 md:p-8 overflow-hidden relative flex flex-col md:flex-row items-start md:items-center gap-6 md:gap-8">
+            <div className="flex-1 space-y-4 z-10 w-full">
               <span className="text-xs font-bold tracking-widest text-gray-500 uppercase">Available Globally</span>
-              <h3 className="text-3xl md:text-4xl font-bold leading-tight">Adaptable across <br/><span className="text-gray-500">time zones</span></h3>
+              <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold leading-tight">Adaptable across <br/><span className="text-gray-500">time zones</span></h3>
               
               <div className="flex flex-wrap gap-2 mt-4">
-                 <div className="px-4 py-2 rounded-full border border-white/10 bg-white/5 text-gray-400 text-sm flex items-center gap-2">
-                   <span className="text-xs">GB</span> UK
+                 <div className="px-3 py-1.5 md:px-4 md:py-2 rounded-full border border-white/10 bg-white/5 text-gray-400 text-xs md:text-sm flex items-center gap-2">
+                   <span className="text-[10px] md:text-xs">GB</span> UK
                  </div>
-                 <div className="px-4 py-2 rounded-full border border-orange-500/30 bg-orange-500/10 text-orange-400 text-sm flex items-center gap-2">
-                   <span className="text-xs">BD</span> Bangladesh
+                 <div className="px-3 py-1.5 md:px-4 md:py-2 rounded-full border border-orange-500/30 bg-orange-500/10 text-orange-400 text-xs md:text-sm flex items-center gap-2">
+                   <span className="text-[10px] md:text-xs">BD</span> Bangladesh
                  </div>
-                 <div className="px-4 py-2 rounded-full border border-white/10 bg-white/5 text-gray-400 text-sm flex items-center gap-2">
-                   <span className="text-xs">US</span> USA
+                 <div className="px-3 py-1.5 md:px-4 md:py-2 rounded-full border border-white/10 bg-white/5 text-gray-400 text-xs md:text-sm flex items-center gap-2">
+                   <span className="text-[10px] md:text-xs">US</span> USA
                  </div>
               </div>
               
-              <div className="mt-8 flex items-center gap-2 text-gray-500">
+              <div className="mt-8 flex items-center gap-2 text-gray-500 text-sm">
                 <FiMapPin />
                 <span className="text-white font-medium">REMOTE</span>
                 <span>•</span>
