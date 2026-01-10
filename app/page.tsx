@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Navbar, Footer, AnimatedBackground } from "./components/layout";
+import { Navbar, Footer } from "./components/layout";
 import {
   HeroSection,
   AboutSection,
@@ -14,10 +14,9 @@ export default function Home() {
   const [activeSection, setActiveSection] = useState("about");
 
   return (
-    <div className="min-h-screen bg-[#030712] text-white font-[family-name:var(--font-geist-sans)] noise">
-      <AnimatedBackground />
+    <div className="min-h-screen text-foreground font-[family-name:var(--font-geist-sans)]">
       <Navbar activeSection={activeSection} setActiveSection={setActiveSection} />
-      <main className="relative z-10">
+      <main className="relative z-10 p-4 sm:p-8 space-y-24 container mx-auto">
         <HeroSection />
         <AboutSection />
         <ProjectsSection />

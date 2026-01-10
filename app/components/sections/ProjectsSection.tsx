@@ -2,10 +2,10 @@ import { projects } from "@/app/data/projects";
 import { GithubIcon, ExternalLinkIcon, StarIcon } from "../icons";
 
 const languageColors: Record<string, string> = {
-  Python: "bg-emerald-500/20 text-emerald-400 border-emerald-500/30",
-  TypeScript: "bg-blue-500/20 text-blue-400 border-blue-500/30",
-  JavaScript: "bg-yellow-500/20 text-yellow-400 border-yellow-500/30",
-  "C++": "bg-purple-500/20 text-purple-400 border-purple-500/30",
+  Python: "bg-yellow-500/20 text-yellow-300 border-yellow-500/30",
+  TypeScript: "bg-blue-500/20 text-blue-300 border-blue-500/30",
+  JavaScript: "bg-yellow-400/20 text-yellow-200 border-yellow-400/30",
+  "C++": "bg-blue-600/20 text-blue-200 border-blue-600/30",
 };
 
 export function ProjectsSection() {
@@ -13,56 +13,53 @@ export function ProjectsSection() {
     <section id="projects" className="relative py-20 sm:py-32 px-4 sm:px-6">
       <div className="max-w-6xl mx-auto">
         {/* Section header */}
-        <div className="text-center mb-12 sm:mb-16">
-          <span className="inline-block px-4 py-1.5 rounded-full text-xs font-medium tracking-wider uppercase bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 mb-4">
+        <div className="text-center mb-16">
+          <span className="inline-block px-4 py-2 border border-accent/20 bg-accent/10 text-accent text-sm font-bold uppercase tracking-wider mb-6 rounded-full">
             Portfolio
           </span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 tracking-tight">
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-black text-white mb-6 tracking-tight">
             Featured Projects
           </h2>
-          <p className="text-gray-400 max-w-2xl mx-auto text-base sm:text-lg">
+          <p className="text-gray-400 font-medium max-w-2xl mx-auto text-lg sm:text-xl">
             A selection of projects I&apos;ve built and contributed to
           </p>
         </div>
 
         {/* Projects grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project, index) => (
             <a
               key={project.name}
               href={project.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative glass-card rounded-2xl p-6 hover:bg-white/[0.08] transition-all duration-500 hover:-translate-y-1"
+              className="modern-card p-6 group flex flex-col h-full hover:bg-white/5 transition-all duration-300"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
-              {/* Top accent line */}
-              <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-indigo-500/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              
-              <div className="flex items-start justify-between mb-4">
-                <div className="w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center group-hover:border-indigo-500/30 transition-colors">
-                  <svg className="w-5 h-5 text-gray-400 group-hover:text-indigo-400 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
+              <div className="flex items-start justify-between mb-6">
+                <div className="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center border border-white/10 group-hover:scale-110 transition-transform duration-300">
+                  <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
                   </svg>
                 </div>
-                <ExternalLinkIcon className="w-4 h-4 text-gray-500 opacity-0 group-hover:opacity-100 group-hover:text-indigo-400 transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                <ExternalLinkIcon className="w-6 h-6 text-gray-400 group-hover:text-white transition-colors duration-200" />
               </div>
 
-              <h3 className="text-lg font-semibold text-white mb-2 group-hover:text-indigo-300 transition-colors">
+              <h3 className="text-xl font-bold text-white mb-3 group-hover:text-accent transition-colors">
                 {project.name}
               </h3>
-              <p className="text-gray-400 text-sm leading-relaxed mb-4 line-clamp-2">
+              <p className="text-gray-400 text-base leading-relaxed mb-6 line-clamp-3 flex-grow">
                 {project.description}
               </p>
 
-              <div className="flex items-center justify-between mt-auto pt-4 border-t border-white/5">
-                <span className={`px-2.5 py-1 rounded-md text-xs font-medium border ${languageColors[project.language] || "bg-gray-500/20 text-gray-400 border-gray-500/30"}`}>
+              <div className="flex items-center justify-between mt-auto pt-4 border-t border-white/10">
+                <span className={`px-3 py-1 rounded-full text-xs font-bold border ${languageColors[project.language] || "bg-gray-800 text-gray-300 border-gray-700"}`}>
                   {project.language}
                 </span>
                 {project.stars > 0 && (
-                  <div className="flex items-center gap-1.5 text-gray-400">
-                    <StarIcon className="w-3.5 h-3.5 text-yellow-500" />
-                    <span className="text-xs">{project.stars}</span>
+                  <div className="flex items-center gap-1.5 text-gray-400 font-bold">
+                    <StarIcon className="w-4 h-4 text-yellow-500 fill-yellow-500" />
+                    <span className="text-sm">{project.stars}</span>
                   </div>
                 )}
               </div>
@@ -71,17 +68,17 @@ export function ProjectsSection() {
         </div>
 
         {/* View all button */}
-        <div className="text-center mt-12">
+        <div className="text-center mt-16">
           <a
             href="https://github.com/shafisma?tab=repositories"
             target="_blank"
             rel="noopener noreferrer"
-            className="group inline-flex items-center gap-3 px-6 py-3 glass-card rounded-xl hover:bg-white/10 transition-all duration-300"
+            className="group inline-flex items-center gap-3 px-8 py-3 bg-white/5 border border-white/10 rounded-full hover:bg-white/10 hover:scale-105 transition-all duration-300 backdrop-blur-sm"
           >
-            <GithubIcon className="w-5 h-5 text-gray-400 group-hover:text-white transition-colors" />
-            <span className="text-gray-300 group-hover:text-white transition-colors">View All Repositories</span>
-            <svg className="w-4 h-4 text-gray-400 group-hover:text-white group-hover:translate-x-1 transition-all" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            <GithubIcon className="w-6 h-6 text-white" />
+            <span className="text-white font-bold text-lg uppercase">View All Repositories</span>
+            <svg className="w-5 h-5 text-white group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>
           </a>
         </div>

@@ -1,89 +1,94 @@
-import { GithubIcon, XIcon, InstagramIcon } from "../icons";
+"use client";
+
+import { useRef } from "react";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
 
 export function HeroSection() {
+  const containerRef = useRef<HTMLElement>(null);
+  const badgeRef = useRef<HTMLDivElement>(null);
+  const titleRef = useRef<HTMLHeadingElement>(null);
+  const subtitleRef = useRef<HTMLParagraphElement>(null);
+  const socialRef = useRef<HTMLDivElement>(null);
+  const ctaRef = useRef<HTMLDivElement>(null);
+
+  useGSAP(() => {
+    const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+
+    tl.from(badgeRef.current, {
+      y: -20,
+      opacity: 0,
+      duration: 0.8,
+    })
+      .from(titleRef.current, {
+        y: 50,
+        opacity: 0,
+        duration: 1,
+        skewY: 5,
+      }, "-=0.4")
+      .from(subtitleRef.current, {
+        y: 30,
+        opacity: 0,
+        duration: 1,
+      }, "-=0.6")
+      .from(socialRef.current, {
+        y: 20,
+        opacity: 0,
+        duration: 0.8,
+      }, "-=0.6")
+      .from(ctaRef.current, {
+        y: 20,
+        opacity: 0,
+        duration: 0.8,
+      }, "-=0.6");
+  }, { scope: containerRef });
+
   return (
-    <section className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 pt-20">
-      <div className="text-center max-w-4xl mx-auto w-full">
+    <section ref={containerRef} className="relative min-h-[90vh] flex items-center justify-center px-4 sm:px-6 pt-20 overflow-hidden">
+      {/* Background glow effects - Commented out to use global AnimatedBackground
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-accent/20 rounded-full blur-[100px] pointer-events-none" />
+      <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-accent-secondary/10 rounded-full blur-[100px] pointer-events-none" />
+      */}
+      
+      <div className="text-center max-w-4xl mx-auto w-full relative z-10">
         {/* Status badge */}
-        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card mb-6 sm:mb-8 animate-fade-in-up">
-          <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+        <div ref={badgeRef} className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-[#1a1a1a] border border-white/10 mb-8 hover:bg-[#222] transition-all group cursor-default">
+          <span className="relative flex h-2.5 w-2.5">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500"></span>
           </span>
-          <span className="text-sm text-gray-300">Available for Work</span>
+          <span className="text-xs font-bold text-white/90 uppercase tracking-widest group-hover:text-white">Available for work</span>
         </div>
 
         {/* Main heading */}
-        <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-6 tracking-tight animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
-          <span className="text-white">Hi, I&apos;m </span>
-          <span className="relative inline-block">
-            <span className="bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent animate-gradient">
-              Shafi
-            </span>
-            <svg className="absolute -bottom-2 left-0 w-full" viewBox="0 0 200 12" fill="none">
-              <path d="M2 10C50 4 150 4 198 10" stroke="url(#underline-gradient)" strokeWidth="3" strokeLinecap="round"/>
-              <defs>
-                <linearGradient id="underline-gradient" x1="0" y1="0" x2="200" y2="0">
-                  <stop offset="0%" stopColor="#818cf8"/>
-                  <stop offset="100%" stopColor="#c084fc"/>
-                </linearGradient>
-              </defs>
-            </svg>
+        <h1 ref={titleRef} className="text-5xl sm:text-7xl md:text-9xl font-black mb-8 tracking-tighter leading-[0.9] text-white">
+          Building&nbsp;
+          <span className="font-serif italic font-normal text-white/90 pr-4">Software</span>
+          <span className="block mt-2 text-2xl sm:text-4xl md:text-5xl font-bold tracking-tight text-green-500">
+            That actually works.
           </span>
         </h1>
 
         {/* Subtitle */}
-        <p className="text-base sm:text-xl md:text-2xl text-gray-400 mb-10 max-w-2xl mx-auto leading-relaxed animate-fade-in-up font-light px-4 sm:px-0" style={{ animationDelay: '0.2s' }}>
-          Passionate about Coding Open Source Projects.
-          <br className="hidden sm:block" />
-          I'm just a kid who loves to code and create beautiful things on the web.
-        </p>
-
-        {/* Social links */}
-        <div className="flex gap-3 justify-center mb-10 animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
-          <a
-            href="https://github.com/shafisma"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group p-3 rounded-xl glass-card hover:bg-white/10 transition-all duration-300 hover:scale-110"
-            aria-label="GitHub"
-          >
-            <GithubIcon className="w-5 h-5 text-gray-400 group-hover:text-white transition-colors" />
-          </a>
-          <a
-            href="https://x.com/Shafigrate"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group p-3 rounded-xl glass-card hover:bg-white/10 transition-all duration-300 hover:scale-110"
-            aria-label="X (Twitter)"
-          >
-            <XIcon className="w-5 h-5 text-gray-400 group-hover:text-white transition-colors" />
-          </a>
-          <a
-            href="https://www.instagram.com/sh4fi_dx/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group p-3 rounded-xl glass-card hover:bg-white/10 transition-all duration-300 hover:scale-110"
-            aria-label="Instagram"
-          >
-            <InstagramIcon className="w-5 h-5 text-gray-400 group-hover:text-white transition-colors" />
-          </a>
+        <div ref={subtitleRef} className="flex flex-col items-center gap-6 mb-12">
+          <p className="text-lg text-gray-400 font-medium max-w-lg mx-auto leading-relaxed">
+            I'm just a kid who loves to code and create beautiful things on the web that <span className="font-serif italic text-white">you can feel</span>.
+          </p>
+          
         </div>
 
+
         {/* CTA Buttons */}
-        <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up px-4 sm:px-0" style={{ animationDelay: '0.4s' }}>
+        <div ref={ctaRef} className="flex flex-col sm:flex-row gap-6 justify-center px-4 sm:px-0">
           <a
             href="#projects"
             onClick={(e) => {
               e.preventDefault();
               document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" });
             }}
-            className="group inline-flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-xl font-medium text-white hover:opacity-90 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-indigo-500/25 w-full sm:w-auto"
+            className="modern-button items-center justify-center inline-flex shadow-lg shadow-accent/20"
           >
             View My Work
-            <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-            </svg>
           </a>
           <a
             href="#contact"
@@ -91,7 +96,7 @@ export function HeroSection() {
               e.preventDefault();
               document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
             }}
-            className="inline-flex items-center justify-center gap-2 px-8 py-4 glass-card rounded-xl font-medium text-gray-300 hover:text-white hover:bg-white/10 transition-all duration-300 w-full sm:w-auto"
+            className="inline-flex items-center justify-center gap-2 px-8 py-3 bg-white/5 border border-white/10 rounded-full text-white font-bold text-lg hover:bg-white/10 hover:-translate-y-1 hover:border-white/20 transition-all w-full sm:w-auto backdrop-blur-sm"
           >
            Contact Me
           </a>
