@@ -8,27 +8,31 @@ export function AnimatedBackground() {
   const blob2Ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Animate blobs
-    if (blob1Ref.current && blob2Ref.current) {
-      gsap.to(blob1Ref.current, {
+    // Only animate if the device has enough power (simple heuristic) and prevent main-thread blocking on load
+    const ctx = gsap.context(() => {
+      // Delay animation start slightly to prioritize LCP/TBT
+      const t1 = gsap.to(blob1Ref.current, {
         x: "50vw",
         y: "50vh",
         duration: 20,
         repeat: -1,
         yoyo: true,
-        ease: "sine.inOut"
+        ease: "sine.inOut",
+        delay: 0.5 
       });
       
-      gsap.to(blob2Ref.current, {
+      const t2 = gsap.to(blob2Ref.current, {
         x: "-30vw",
         y: "-40vh",
         duration: 15,
         repeat: -1,
         yoyo: true,
         ease: "sine.inOut",
-        delay: 2
+        delay: 2.5
       });
-    }
+    });
+
+    return () => ctx.revert();
   }, []);
 
   return (

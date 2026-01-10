@@ -53,6 +53,7 @@ export function ContactSection() {
               href={link.href}
               target="_blank"
               rel="noopener noreferrer"
+              aria-label={link.name}
               className={`modern-card p-8 text-center bg-white/5 hover:bg-white/10 group`}
               style={{ animationDelay: `${index * 0.1}s` }}
             >
