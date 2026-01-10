@@ -76,7 +76,7 @@ export function ProjectsSection() {
             className="group inline-flex items-center gap-3 px-8 py-3 bg-white/5 border border-white/10 rounded-full hover:bg-white/10 hover:scale-105 transition-all duration-300 backdrop-blur-sm"
           >
             <GithubIcon className="w-6 h-6 text-white" />
-            <span className="text-white font-bold text-lg uppercase">View All Repositories</span>
+            <span className="text-white font-bold text-lg uppercase">View All Projects</span>
             <svg className="w-5 h-5 text-white group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>

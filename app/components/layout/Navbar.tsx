@@ -35,6 +35,7 @@ export function Navbar({ activeSection, setActiveSection }: NavbarProps) {
           <div className="flex items-center justify-between">
             <a
               href="#"
+              aria-label="Shafi Home"
               className="nav-element hidden sm:block text-xl font-black tracking-tight text-white hover:text-accent transition-colors uppercase"
             >
               shafi<span className="text-accent">.</span>

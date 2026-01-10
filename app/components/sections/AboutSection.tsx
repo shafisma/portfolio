@@ -64,6 +64,7 @@ export function AboutSection() {
   return (
     <section id="about" className="relative py-20 px-4 sm:px-6 text-white overflow-hidden">
       <div className="max-w-7xl mx-auto">
+        <h2 className="sr-only">About Me</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-min">
           
           {/* 1. Profile Card */}
@@ -90,8 +91,8 @@ export function AboutSection() {
             </div>
 
             <div className="flex gap-4 relative z-10">
-              <a href="https://github.com/shafisma" className="p-2 rounded-full bg-white/5 hover:bg-white/20 transition-colors"><SiGithub size={20} /></a>
-              <a href="https://x.com/shafigrate" className="p-2 rounded-full bg-white/5 hover:bg-white/20 transition-colors"><SiX size={20} /></a>
+              <a href="https://github.com/shafisma" aria-label="GitHub Profile" target="_blank" rel="noopener noreferrer" className="p-2 rounded-full bg-white/5 hover:bg-white/20 transition-colors"><SiGithub size={20} /></a>
+              <a href="https://x.com/shafigrate" aria-label="X (Twitter) Profile" target="_blank" rel="noopener noreferrer" className="p-2 rounded-full bg-white/5 hover:bg-white/20 transition-colors"><SiX size={20} /></a>
             </div>
           </div>
 
