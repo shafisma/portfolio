@@ -77,18 +77,6 @@ export function AboutSection() {
               </div>
             </div>
             
-            {/* Image Placeholder */}
-            <div className="flex-1 relative min-h-[180px] md:min-h-[200px] w-full mt-2 md:mt-4 mb-4 perspective-1000">
-             <div className="absolute left-0 bottom-0 w-24 h-32 bg-gray-800 rounded-lg border-4 border-white transform -rotate-12 hover:rotate-0 transition-all duration-300 z-10 overflow-hidden shadow-lg">
-                <div className="w-full h-full bg-gradient-to-br from-blue-500 to-purple-600 opacity-50"></div>
-              </div>
-              <div className="absolute left-1/2 bottom-4 w-28 h-36 bg-gray-700 rounded-lg border-4 border-white transform -translate-x-1/2 rotate-3 hover:rotate-0 hover:z-20 transition-all duration-300 z-10 overflow-hidden shadow-xl">
-                 <div className="w-full h-full bg-gradient-to-tr from-orange-400 to-pink-500 opacity-50"></div>
-              </div>
-              <div className="absolute right-0 bottom-2 w-24 h-32 bg-gray-800 rounded-lg border-4 border-white transform rotate-12 hover:rotate-0 transition-all duration-300 z-0 overflow-hidden shadow-lg">
-                 <div className="w-full h-full bg-gradient-to-bl from-green-400 to-cyan-500 opacity-50"></div>
-              </div>
-            </div>
 
             <div className="flex gap-4 relative z-10">
               <a href="https://github.com/shafisma" aria-label="GitHub Profile" target="_blank" rel="noopener noreferrer" className="p-2 rounded-full bg-white/5 hover:bg-white/20 transition-colors"><SiGithub size={20} /></a>
