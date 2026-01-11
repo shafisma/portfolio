@@ -88,11 +88,37 @@ export function SkillsSection() {
         {/* Section header */}
         <div className="text-center mb-16">
           <span className="inline-block px-4 py-2 border border-white/10 bg-white/5 text-gray-400 text-xs font-bold uppercase tracking-widest mb-6 rounded-full">
-            My Skills
+            Process & Tools
           </span>
           <h2 className="text-5xl sm:text-7xl md:text-8xl font-black text-white mb-8 tracking-tighter">
             The Magic <span className="font-serif italic bg-linear-to-r from-purple-400 to-pink-600 text-transparent bg-clip-text pr-2">Behind</span>
           </h2>
+        </div>
+
+        {/* Process Steps */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
+           {[
+             { title: "Understand", desc: "Digging deep into the problem space and user needs.", icon: "01" },
+             { title: "Design", desc: "Crafting intuitive flows and interactions that feel natural.", icon: "02" },
+             { title: "Build", desc: "Writing clean, scalable code with modern standards.", icon: "03" },
+             { title: "Iterate", desc: "Refining based on feedback to reach perfection.", icon: "04" }
+           ].map((step) => (
+             <div key={step.title} className="p-6 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors group">
+               <span className="text-4xl font-black text-white/5 mb-4 block group-hover:text-accent/20 transition-colors">{step.icon}</span>
+               <h3 className="text-xl font-bold text-white mb-2">{step.title}</h3>
+               <p className="text-sm text-gray-400 leading-relaxed">{step.desc}</p>
+             </div>
+           ))}
+        </div>
+
+        <div className="text-center mb-12">
+            <h3 className="text-2xl font-bold text-white mb-6">My Toolbox</h3>
+             <div className="flex flex-wrap justify-center gap-4 text-xs font-mono text-gray-500 mb-8">
+               <span>FRONTEND</span> <span className="text-gray-700">/</span>
+               <span>BACKEND</span> <span className="text-gray-700">/</span>
+               <span>INFRASTRUCTURE</span> <span className="text-gray-700">/</span>
+               <span>TESTING</span>
+             </div>
         </div>
 
         {/* Skills grid */}

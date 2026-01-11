@@ -21,8 +21,17 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "Shafi | Developer Portfolio",
-  description: "Hi, I'm Shafi! A passionate developer exploring new technologies and solving real-world problems with software.",
+  title: "Shafiuzzaman | Full‑Stack Developer Portfolio (Next.js)",
+  description: "Explore Shafiuzzaman’s full‑stack developer portfolio featuring Next.js, TypeScript and Python projects. View featured work, open-source repos, and get in touch.",
+  keywords: ["full-stack developer", "Next.js portfolio", "TypeScript projects", "Python developer", "open-source"],
+  openGraph: {
+    title: "Shafiuzzaman | Full‑Stack Developer Portfolio (Next.js)",
+    description: "Explore Shafiuzzaman’s full‑stack developer portfolio featuring Next.js, TypeScript and Python projects.",
+    url: "https://shafi-portfolio.vercel.app", // Placeholder URL
+    siteName: "Shafi's Portfolio",
+    locale: "en_US",
+    type: "website",
+  },
 };
 
 import ClientLayout from "./components/layout/ClientLayout";

@@ -63,7 +63,7 @@ export function AboutSection() {
 
   return (
     <section id="about" className="relative py-20 px-4 sm:px-6 text-white overflow-hidden">
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-7xl mx-auto space-y-8">
         <h2 className="sr-only">About Me</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-min">
           
@@ -77,7 +77,7 @@ export function AboutSection() {
               </div>
             </div>
             
-            {/* Image Placeholder - simulating the polaroids */}
+            {/* Image Placeholder */}
             <div className="flex-1 relative min-h-[180px] md:min-h-[200px] w-full mt-2 md:mt-4 mb-4 perspective-1000">
              <div className="absolute left-0 bottom-0 w-24 h-32 bg-gray-800 rounded-lg border-4 border-white transform -rotate-12 hover:rotate-0 transition-all duration-300 z-10 overflow-hidden shadow-lg">
                 <div className="w-full h-full bg-gradient-to-br from-blue-500 to-purple-600 opacity-50"></div>
@@ -92,93 +92,106 @@ export function AboutSection() {
 
             <div className="flex gap-4 relative z-10">
               <a href="https://github.com/shafisma" aria-label="GitHub Profile" target="_blank" rel="noopener noreferrer" className="p-2 rounded-full bg-white/5 hover:bg-white/20 transition-colors"><SiGithub size={20} /></a>
-              <a href="https://x.com/shafigrate" aria-label="X (Twitter) Profile" target="_blank" rel="noopener noreferrer" className="p-2 rounded-full bg-white/5 hover:bg-white/20 transition-colors"><SiX size={20} /></a>
+              <a href="https://x.com/Shafigrate" aria-label="X (Twitter) Profile" target="_blank" rel="noopener noreferrer" className="p-2 rounded-full bg-white/5 hover:bg-white/20 transition-colors"><SiX size={20} /></a>
             </div>
           </div>
 
-          {/* 2. Philosophy Card */}
+          {/* 2. About Me Text Card */}
+          <div className="md:col-span-2 rounded-3xl bg-[#0a0a0a] border border-white/10 p-6 md:p-10 flex flex-col justify-center gap-6">
+             <div className="space-y-4">
+                <h3 className="text-2xl font-bold text-white">Who I am</h3>
+                <p className="text-gray-400 leading-relaxed text-sm md:text-base">
+                  I’m Shafi, a passionate developer digging deep into complex problems and solving them with software. My mission is to build tools that empower people and businesses to achieve their goals. I approach every project with a focus on user empathy, scalability, and performance.
+                </p>
+                <p className="text-gray-400 leading-relaxed text-sm md:text-base">
+                  I specialize in full-stack development with a heavy focus on the frontend ecosystem—specifically <strong>Next.js, TypeScript, and Tailwind</strong>. I love crafting interfaces that feel instant and alive.
+                </p>
+             </div>
+
+             <div className="flex flex-wrap gap-3 mt-2">
+                {["TypeScript", "Next.js", "Python", "Tailwind", "Open Source", "Async-first"].map((tag) => (
+                  <span key={tag} className="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs text-gray-300 font-medium">
+                    {tag}
+                  </span>
+                ))}
+             </div>
+          </div>
+
+          {/* 3. Philosophy Card (Interfaces you can feel) */}
           <div 
+            id="philosophy"
             ref={philosophyRef}
             onMouseMove={handlePhilosophyMouseMove}
             onMouseLeave={handlePhilosophyLeave}
-            className="md:col-span-2 min-h-[350px] md:min-h-[400px] rounded-3xl bg-[#111] border border-white/10 p-6 md:p-12 relative overflow-hidden flex flex-col hover:border-white/20 transition-colors duration-500 cursor-auto md:cursor-none"
+            className="md:col-span-3 min-h-[300px] md:min-h-[350px] rounded-3xl bg-[#111] border border-white/10 p-6 md:p-12 relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-8 hover:border-white/20 transition-colors duration-500 cursor-auto md:cursor-none"
           >
-            <div className="absolute top-6 right-6 md:top-8 md:right-8 flex flex-wrap justify-end gap-2 max-w-[60%] md:max-w-none">
-              {['Motion', 'Type', 'Feedback', 'Craft'].map(tag => (
-                <span key={tag} className="px-2 py-0.5 md:px-3 md:py-1 rounded-full text-[10px] md:text-xs font-medium border border-white/10 bg-white/5 text-gray-400">
-                  {tag}
-                </span>
-              ))}
+            {/* Text Side */}
+            <div className="relative z-10 flex-1 space-y-6">
+               <div>
+                  <div className="flex items-center gap-2 text-gray-500 text-xs md:text-sm font-mono mb-2 md:mb-4">
+                    <span className="w-3 h-3 md:w-4 md:h-4 rounded-full border border-gray-600 flex items-center justify-center">▶</span>
+                    DESIGN PHILOSOPHY
+                  </div>
+                  <h2 className="text-4xl md:text-5xl font-bold leading-tight">Interfaces <span className="font-serif italic text-gray-400">you can feel.</span></h2>
+               </div>
+               
+               <p className="text-gray-400 text-sm md:text-base max-w-lg">
+                  I believe in software that communicates through movement. Every interaction should provide immediate, meaningful feedback.
+               </p>
+
+               <ul className="space-y-2 text-sm text-gray-500">
+                  <li className="flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-green-500"/>Hover states that inform</li>
+                  <li className="flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-green-500"/>Loading feedback that reassures</li>
+                  <li className="flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-green-500"/>Intent confirmation</li>
+               </ul>
             </div>
-            
-            <div className="mt-8 md:mt-12 relative z-10 pointer-events-none">
-              <div className="flex items-center gap-2 text-gray-500 text-xs md:text-sm font-mono mb-2 md:mb-4">
-                <span className="w-3 h-3 md:w-4 md:h-4 rounded-full border border-gray-600 flex items-center justify-center">▶</span>
-                DETAIL-DRIVEN UI
-              </div>
-              <h2 className="text-4xl md:text-7xl font-bold leading-tight mb-1 md:mb-2">Interfaces</h2>
-              <h2 className="text-4xl md:text-7xl font-serif italic text-gray-400 mb-6 md:mb-8">you can feel.</h2>
-              
-              <div className="flex flex-col gap-1 max-w-sm ml-auto text-right">
-                <h4 className="text-white font-bold text-sm md:text-base">Micro-interactions</h4>
-                <p className="text-gray-500 text-xs md:text-sm">Subtle movement that confirms intent — never distracting.</p>
-              </div>
-            </div>
-            
-             {/* Interactive Dial/Knob Graphic */}
-            <div className="absolute bottom-[-140px] left-1/2 transform -translate-x-1/2 w-[500px] h-[500px] rounded-full border border-white/5 flex items-center justify-center pointer-events-none">
-              <div className="w-[400px] h-[400px] rounded-full border border-white/10 flex items-center justify-center relative">
-                 {/* Ticks */}
-                 {[...Array(60)].map((_, i) => (
-                   <div 
-                    key={i} 
-                    className={`absolute w-0.5 h-3 bg-white/20 origin-bottom`}
-                    style={{ 
-                      top: '0', 
-                      left: '50%', 
-                      transformOrigin: '50% 200px',
-                      transform: `rotate(${i * 6}deg)` 
-                    }}
-                  />
-                 ))}
-                 
-                 <div ref={dialRef} className="w-[300px] h-[300px] rounded-full border-[2px] border-white/10 flex items-center justify-center relative bg-[#111] shadow-2xl">
-                    <div className="absolute h-[140px] w-2 bg-gradient-to-t from-orange-500 to-red-500 top-[10px] left-1/2 transform -translate-x-1/2 rounded-full shadow-[0_0_20px_rgba(249,115,22,0.4)]"></div>
-                    <div className="w-8 h-8 rounded-full bg-white/90 z-20 shadow-lg border-4 border-[#111]"></div>
-                 </div>
-              </div>
+
+            {/* Graphic Side (Dial) */}
+            <div className="relative w-full md:w-[400px] h-[300px] flex items-center justify-center pointer-events-none">
+                <div className="scale-75 md:scale-100 relative">
+                  <div className="w-[300px] h-[300px] rounded-full border border-white/10 flex items-center justify-center relative">
+                    {[...Array(60)].map((_, i) => (
+                      <div 
+                        key={i} 
+                        className={`absolute w-0.5 h-3 bg-white/20 origin-bottom`}
+                        style={{ 
+                          top: '0', 
+                          left: '50%', 
+                          transformOrigin: '50% 150px',
+                          transform: `rotate(${i * 6}deg)` 
+                        }}
+                      />
+                    ))}
+                    
+                    <div ref={dialRef} className="w-[200px] h-[200px] rounded-full border-[2px] border-white/10 flex items-center justify-center relative bg-[#111] shadow-2xl">
+                        <div className="absolute h-[90px] w-2 bg-gradient-to-t from-orange-500 to-red-500 top-[10px] left-1/2 transform -translate-x-1/2 rounded-full shadow-[0_0_20px_rgba(249,115,22,0.4)]"></div>
+                        <div className="w-6 h-6 rounded-full bg-white/90 z-20 shadow-lg border-4 border-[#111]"></div>
+                    </div>
+                  </div>
+                </div>
             </div>
           </div>
 
 
           {/* 4. Global Timezone Card */}
-          <div className="md:col-span-3 min-h-[300px] rounded-3xl bg-[#080808] border border-white/10 p-6 md:p-8 overflow-hidden relative flex flex-col md:flex-row items-start md:items-center gap-6 md:gap-8">
+          <div className="md:col-span-3 min-h-[250px] rounded-3xl bg-[#080808] border border-white/10 p-6 md:p-8 overflow-hidden relative flex flex-col md:flex-row items-center gap-6 md:gap-8">
             <div className="flex-1 space-y-4 z-10 w-full">
               <span className="text-xs font-bold tracking-widest text-gray-500 uppercase">Available Globally</span>
-              <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold leading-tight">Adaptable across <br/><span className="text-gray-500">time zones</span></h3>
+              <h3 className="text-2xl sm:text-3xl font-bold leading-tight">Adaptable across <br/><span className="text-gray-500">time zones</span></h3>
+              <p className="text-gray-400 text-sm max-w-sm">
+                I work async-first and am comfortable collaborating with teams in US, UK, and European time zones. 24-48h turnaround on communications.
+              </p>
               
-              <div className="flex flex-wrap gap-2 mt-4">
-                 <div className="px-3 py-1.5 md:px-4 md:py-2 rounded-full border border-white/10 bg-white/5 text-gray-400 text-xs md:text-sm flex items-center gap-2">
-                   <span className="text-[10px] md:text-xs">GB</span> UK
+              <div className="flex items-center gap-4 pt-2">
+                 <div className="flex items-center gap-2 text-xs font-bold text-white bg-white/10 px-3 py-1 rounded-full border border-white/5">
+                    <FiClock className="text-orange-500" />
+                    <span>EST / PST / GMT Friendly</span>
                  </div>
-                 <div className="px-3 py-1.5 md:px-4 md:py-2 rounded-full border border-orange-500/30 bg-orange-500/10 text-orange-400 text-xs md:text-sm flex items-center gap-2">
-                   <span className="text-[10px] md:text-xs">BD</span> Bangladesh
-                 </div>
-                 <div className="px-3 py-1.5 md:px-4 md:py-2 rounded-full border border-white/10 bg-white/5 text-gray-400 text-xs md:text-sm flex items-center gap-2">
-                   <span className="text-[10px] md:text-xs">US</span> USA
-                 </div>
-              </div>
-              
-              <div className="mt-8 flex items-center gap-2 text-gray-500 text-sm">
-                <FiMapPin />
-                <span className="text-white font-medium">REMOTE</span>
-                <span>•</span>
-                <span>Bangladesh</span>
               </div>
             </div>
 
             {/* Dotted Map Visualization */}
-            <div className="flex-1 w-full h-full relative opacity-50 contrast-125 min-h-[250px]">
+            <div className="flex-1 w-full h-[200px] relative opacity-50 contrast-125">
                <div className="absolute inset-0 mask-radial-gradient">
                  <DottedMap 
                    dotColor="#555"
@@ -197,5 +210,6 @@ export function AboutSection() {
         </div>
       </div>
     </section>
+
   );
 }

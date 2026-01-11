@@ -61,47 +61,52 @@ export function HeroSection() {
         </div>
 
         {/* Main heading */}
-        <h1 ref={titleRef} className="text-4xl sm:text-6xl md:text-8xl lg:text-9xl font-black mb-6 sm:mb-8 tracking-tighter leading-[0.95] sm:leading-[0.9] text-white">
-          Building&nbsp;
-          <span className="font-serif italic font-normal text-white/90 pr-0 block sm:inline sm:pr-4">Software</span>
+        <h1 ref={titleRef} className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black mb-6 sm:mb-8 tracking-tighter leading-[0.95] sm:leading-[0.9] text-white">
+          I build fast, reliable&nbsp;
+          <span className="font-serif italic font-normal text-white/90 pr-0 block sm:inline sm:pr-4">web apps</span>
           <span className="block mt-2 text-2xl sm:text-4xl md:text-5xl font-bold tracking-tight text-green-500">
-            That actually works.
+            with Next.js and TypeScript.
           </span>
         </h1>
 
         {/* Subtitle */}
         <div ref={subtitleRef} className="flex flex-col items-center gap-6 mb-8 sm:mb-12 px-2">
           <p className="text-base sm:text-lg text-gray-400 font-medium max-w-lg mx-auto leading-relaxed">
-            I'm just a kid who loves to code and create beautiful things on the web that <span className="font-serif italic text-white">you can feel</span>.
+            Focused on <span className="font-serif italic text-white">interfaces you can feel</span>. Previously shipped 6+ projects used by communities and teams.
           </p>
-          
+          <div className="flex flex-wrap justify-center gap-4 text-xs sm:text-sm font-bold text-gray-500 uppercase tracking-widest">
+            <span>Frontend Systems</span>
+            <span className="text-gray-700">•</span>
+            <span>Micro-interactions</span>
+            <span className="text-gray-700">•</span>
+            <span>AI Tooling</span>
+          </div>
         </div>
 
 
         {/* CTA Buttons */}
         <div ref={ctaRef} className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center w-full sm:w-auto px-4 sm:px-0">
           <a
-            href="#projects"
-            onClick={(e) => {
-              e.preventDefault();
-              document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" });
-            }}
-            className="modern-button items-center justify-center inline-flex shadow-lg shadow-accent/20 w-full sm:w-auto py-3 sm:py-4 text-base sm:text-lg"
-          >
-            View My Work
-          </a>
-          <a
             href="#contact"
             onClick={(e) => {
               e.preventDefault();
               document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
             }}
+            className="modern-button items-center justify-center inline-flex shadow-lg shadow-accent/20 w-full sm:w-auto py-3 sm:py-4 text-base sm:text-lg"
+          >
+            Start a project
+          </a>
+          <a
+            href="#projects"
+            onClick={(e) => {
+              e.preventDefault();
+              document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" });
+            }}
             className="inline-flex items-center justify-center gap-2 px-8 py-3 bg-white/5 border border-white/10 rounded-full text-white font-bold text-base sm:text-lg hover:bg-white/10 hover:-translate-y-1 hover:border-white/20 transition-all w-full sm:w-auto backdrop-blur-sm"
           >
-           Contact Me
+            View projects
           </a>
         </div>
-
       </div>
     </section>
   );
