@@ -104,7 +104,7 @@ export function AboutSection() {
                   I’m Shafi, a passionate developer digging deep into complex problems and solving them with software. My mission is to build tools that empower people and businesses to achieve their goals. I approach every project with a focus on user empathy, scalability, and performance.
                 </p>
                 <p className="text-gray-400 leading-relaxed text-sm md:text-base">
-                  I specialize in full-stack development with a heavy focus on the frontend ecosystem—specifically <strong>Next.js, TypeScript, and Tailwind</strong>. I love crafting interfaces that feel instant and alive.
+                  I specialize in full-stack development with a heavy focus on the frontend ecosystem—specifically <a href="https://nextjs.org" target="_blank" rel="noopener noreferrer" className="text-white font-medium hover:underline decoration-green-500 underline-offset-4 transition-all">Next.js</a>, <a href="https://www.typescriptlang.org" target="_blank" rel="noopener noreferrer" className="text-white font-medium hover:underline decoration-blue-500 underline-offset-4 transition-all">TypeScript</a>, and <a href="https://tailwindcss.com" target="_blank" rel="noopener noreferrer" className="text-white font-medium hover:underline decoration-cyan-500 underline-offset-4 transition-all">Tailwind</a>. I love crafting interfaces that feel instant and alive.
                 </p>
              </div>
 

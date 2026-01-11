@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Link from "next/link";
 
 const sections = ["about", "projects", "skills", "contact"];
 
@@ -37,17 +38,21 @@ export function Navbar() {
       <div className="mx-2 mt-2 sm:mx-4 sm:mt-4">
         <div className="max-w-5xl mx-auto glass rounded-full px-4 py-2 sm:px-6 sm:py-3 transition-all hover:bg-black/80">
           <div className="flex items-center justify-between gap-4">
-            <a
-              href="#"
+            <Link
+              href="/"
               className="text-lg sm:text-xl font-black tracking-tight text-white hover:text-accent transition-colors uppercase shrink-0"
             >
               shafi<span className="text-accent">.</span>
-            </a>
+            </Link>
             <div className="flex items-center gap-1 sm:gap-2 overflow-x-auto no-scrollbar">
               {sections.map((section) => (
-                <button
+                <Link
                   key={section}
-                  onClick={() => handleScroll(section)}
+                  href={`#${section}`}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleScroll(section);
+                  }}
                   className={`relative capitalize text-xs sm:text-sm font-medium px-3 py-1.5 sm:px-4 sm:py-2 rounded-full transition-all duration-300 whitespace-nowrap ${
                     activeSection === section
                       ? "text-black bg-white shadow-[0_0_20px_rgba(255,255,255,0.3)]"
@@ -55,7 +60,7 @@ export function Navbar() {
                   }`}
                 >
                   {section}
-                </button>
+                </Link>
               ))}
             </div>
           </div>

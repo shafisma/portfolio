@@ -101,7 +101,7 @@ export function SkillsSection() {
              { title: "Understand", desc: "Digging deep into the problem space and user needs.", icon: "01" },
              { title: "Design", desc: "Crafting intuitive flows and interactions that feel natural.", icon: "02" },
              { title: "Build", desc: "Writing clean, scalable code with modern standards.", icon: "03" },
-             { title: "Iterate", desc: "Refining based on feedback to reach perfection.", icon: "04" }
+             { title: "Final Touches", desc: "Updating based on feedback to reach perfection.", icon: "04" }
            ].map((step) => (
              <div key={step.title} className="p-6 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors group">
                <span className="text-4xl font-black text-white/5 mb-4 block group-hover:text-accent/20 transition-colors">{step.icon}</span>
