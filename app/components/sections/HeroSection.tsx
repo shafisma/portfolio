@@ -74,13 +74,6 @@ export function HeroSection() {
           <p className="text-base sm:text-lg text-gray-400 font-medium max-w-lg mx-auto leading-relaxed">
             Focused on <span className="font-serif italic text-white">interfaces you can feel</span>. Previously shipped 6+ projects used by communities and teams.
           </p>
-          <div className="flex flex-wrap justify-center gap-4 text-xs sm:text-sm font-bold text-gray-500 uppercase tracking-widest">
-            <span>Frontend Systems</span>
-            <span className="text-gray-700">•</span>
-            <span>Micro-interactions</span>
-            <span className="text-gray-700">•</span>
-            <span>AI Tooling</span>
-          </div>
         </div>
 
 
