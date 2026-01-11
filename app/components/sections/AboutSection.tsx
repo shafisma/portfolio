@@ -89,7 +89,7 @@ export function AboutSection() {
              <div className="space-y-4">
                 <h3 className="text-2xl font-bold text-white">Who I am</h3>
                 <p className="text-gray-400 leading-relaxed text-sm md:text-base">
-                  I’m Shafi, a passionate developer digging deep into complex problems and solving them with software. My mission is to build tools that empower people and businesses to achieve their goals. I approach every project with a focus on user empathy, scalability, and performance.
+                  I’m Shafi, a passionate developer digging deep into complex problems and solving them with software. My mission is to <a href="#projects" className="text-white hover:underline decoration-orange-500 underline-offset-4 transition-all">build tools</a> that empower people and businesses to achieve their goals. I approach every project with a focus on <a href="https://www.nngroup.com/articles/empathy-user/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors border-b border-gray-700 hover:border-white">user empathy</a>, <a href="https://aws.amazon.com/what-is/scalability/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors border-b border-gray-700 hover:border-white">scalability</a>, and <a href="https://web.dev/learn/performance" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors border-b border-gray-700 hover:border-white">performance</a>.
                 </p>
                 <p className="text-gray-400 leading-relaxed text-sm md:text-base">
                   I specialize in full-stack development with a heavy focus on the frontend ecosystem—specifically <a href="https://nextjs.org" target="_blank" rel="noopener noreferrer" className="text-white font-medium hover:underline decoration-green-500 underline-offset-4 transition-all">Next.js</a>, <a href="https://www.typescriptlang.org" target="_blank" rel="noopener noreferrer" className="text-white font-medium hover:underline decoration-blue-500 underline-offset-4 transition-all">TypeScript</a>, and <a href="https://tailwindcss.com" target="_blank" rel="noopener noreferrer" className="text-white font-medium hover:underline decoration-cyan-500 underline-offset-4 transition-all">Tailwind</a>. I love crafting interfaces that feel instant and alive.
@@ -120,7 +120,7 @@ export function AboutSection() {
                     <span className="w-3 h-3 md:w-4 md:h-4 rounded-full border border-gray-600 flex items-center justify-center">▶</span>
                     DESIGN PHILOSOPHY
                   </div>
-                  <h2 className="text-4xl md:text-5xl font-bold leading-tight">Interfaces <span className="font-serif italic text-gray-400">you can feel.</span></h2>
+                  <h2 className="text-4xl md:text-5xl font-bold leading-tight"><a href="https://lawsofux.com/" target="_blank" rel="noopener noreferrer" className="hover:underline decoration-purple-500 underline-offset-4 transition-all">Interfaces</a> <span className="font-serif italic text-gray-400">you can feel.</span></h2>
                </div>
                
                <p className="text-gray-400 text-sm md:text-base max-w-lg">
@@ -167,7 +167,7 @@ export function AboutSection() {
               <span className="text-xs font-bold tracking-widest text-gray-500 uppercase">Available Globally</span>
               <h3 className="text-2xl sm:text-3xl font-bold leading-tight">Adaptable across <br/><span className="text-gray-500">time zones</span></h3>
               <p className="text-gray-400 text-sm max-w-sm">
-                I work async-first and am comfortable collaborating with teams in US, UK, and European time zones. 24-48h turnaround on communications.
+                I work <a href="https://doist.com/blog/async-communication/" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white border-b border-gray-600 hover:border-white transition-colors">async-first</a> and am comfortable collaborating with teams in US, UK, and European time zones. 24-48h turnaround on <a href="#contact" className="text-gray-300 hover:text-white border-b border-gray-600 hover:border-white transition-colors">communications</a>.
               </p>
               
               <div className="flex items-center gap-4 pt-2">

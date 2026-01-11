@@ -19,7 +19,7 @@ export function Footer() {
               </a>
             </div>
             <p className="text-sm font-medium text-gray-500 text-center sm:text-left">
-              © {new Date().getFullYear()} Shafi. Built with Next.js & Tailwind CSS
+              © {new Date().getFullYear()} <a href="#" className="hover:text-white transition-colors">Shafi</a>. Built with <a href="https://nextjs.org" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Next.js</a> & <a href="https://tailwindcss.com" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Tailwind CSS</a>
             </p>
             <div className="flex items-center gap-1 text-sm font-medium text-gray-500">
               <span>Made with</span>
