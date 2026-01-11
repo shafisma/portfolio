@@ -62,10 +62,10 @@ export function HeroSection() {
 
         {/* Main heading */}
         <h1 ref={titleRef} className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black mb-6 sm:mb-8 tracking-tighter leading-[0.95] sm:leading-[0.9] text-white">
-          I build fast, reliable&nbsp;
-          <span className="font-serif italic font-normal text-white/90 pr-0 block sm:inline sm:pr-4">web apps</span>
+          Building&nbsp;
+          <span className="font-serif italic font-normal text-white/90 pr-0 block sm:inline sm:pr-4">Software</span>
           <span className="block mt-2 text-2xl sm:text-4xl md:text-5xl font-bold tracking-tight text-green-500">
-            with Next.js and TypeScript.
+            That actually works.
           </span>
         </h1>
 
