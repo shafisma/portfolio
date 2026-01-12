@@ -7,6 +7,8 @@ import {
   ProjectsSection,
   SkillsSection,
   ContactSection,
+  GithubSection,
+  CTASection,
 } from "./components/sections";
 
 export default function Home() {
@@ -17,8 +19,10 @@ export default function Home() {
         <HeroSection />
         <AboutSection />
         <ProjectsSection />
+        <GithubSection />
         <SkillsSection />
         <ContactSection />
+        <CTASection />
       </main>
       <Footer />
     </div>

@@ -8,6 +8,7 @@ import { FiGlobe, FiMapPin, FiMail, FiCopy, FiExternalLink, FiClock } from "reac
 import { useRef, useState, useEffect } from "react";
 import Image from "next/image";
 import { DottedMap } from "@/app/components/ui/dotted-map";
+import { AnalogClock } from "@/app/components/ui/AnalogClock";
 import gsap from "gsap";
 
 export function AboutSection() {
@@ -120,7 +121,7 @@ export function AboutSection() {
                     <span className="w-3 h-3 md:w-4 md:h-4 rounded-full border border-gray-600 flex items-center justify-center">▶</span>
                     DESIGN PHILOSOPHY
                   </div>
-                  <h2 className="text-4xl md:text-5xl font-bold leading-tight"><a href="https://lawsofux.com/" target="_blank" rel="noopener noreferrer" className="hover:underline decoration-purple-500 underline-offset-4 transition-all">Interfaces</a> <span className="font-serif italic text-gray-400">you can feel.</span></h2>
+                  <h2 className="text-4xl md:text-5xl font-bold leading-tight"><a href="https://lawsofux.com/" target="_blank" rel="noopener noreferrer" className="hover:underline decoration-purple-500 underline-offset-4 transition-all">Interfaces</a> <span className="font-(family-name:--font-lust) italic text-cyan-400">you can feel.</span></h2>
                </div>
                
                <p className="text-gray-400 text-sm md:text-base max-w-lg">
@@ -134,28 +135,10 @@ export function AboutSection() {
                </ul>
             </div>
 
-            {/* Graphic Side (Dial) */}
+            {/* Graphic Side (Clock) */}
             <div className="relative w-full md:w-[400px] h-[300px] flex items-center justify-center pointer-events-none">
                 <div className="scale-75 md:scale-100 relative">
-                  <div className="w-[300px] h-[300px] rounded-full border border-white/10 flex items-center justify-center relative">
-                    {[...Array(60)].map((_, i) => (
-                      <div 
-                        key={i} 
-                        className={`absolute w-0.5 h-3 bg-white/20 origin-bottom`}
-                        style={{ 
-                          top: '0', 
-                          left: '50%', 
-                          transformOrigin: '50% 150px',
-                          transform: `rotate(${i * 6}deg)` 
-                        }}
-                      />
-                    ))}
-                    
-                    <div ref={dialRef} className="w-[200px] h-[200px] rounded-full border-[2px] border-white/10 flex items-center justify-center relative bg-[#111] shadow-2xl">
-                        <div className="absolute h-[90px] w-2 bg-gradient-to-t from-orange-500 to-red-500 top-[10px] left-1/2 transform -translate-x-1/2 rounded-full shadow-[0_0_20px_rgba(249,115,22,0.4)]"></div>
-                        <div className="w-6 h-6 rounded-full bg-white/90 z-20 shadow-lg border-4 border-[#111]"></div>
-                    </div>
-                  </div>
+                   <AnalogClock />
                 </div>
             </div>
           </div>

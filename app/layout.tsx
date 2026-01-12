@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Playfair_Display } from "next/font/google";
+import { Geist, Geist_Mono } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/next"
 import CustomCursor from "./components/ui/CustomCursor";
@@ -14,10 +15,10 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const playfair = Playfair_Display({
-  variable: "--font-playfair",
-  subsets: ["latin"],
-  style: ["normal", "italic"],
+const lustDidone = localFont({
+  src: "./fonts/LustDidone.otf",
+  variable: "--font-lust",
+  weight: "100 900", // Adjust based on font actual weights if known, otherwise typical range
 });
 
 export const metadata: Metadata = {
@@ -95,7 +96,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${playfair.variable} antialiased cursor-none bg-transparent text-white`}
+        className={`${geistSans.variable} ${geistMono.variable} ${lustDidone.variable} antialiased cursor-none bg-transparent text-white`}
       >
         <script
           type="application/ld+json"
