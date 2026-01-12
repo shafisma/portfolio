@@ -28,6 +28,9 @@ export const metadata: Metadata = {
   },
   description: "Explore Shafiuzzaman’s full‑stack developer portfolio: Next.js, TypeScript and Python projects. View featured work, open-source repos, and get in touch.",
   keywords: ["full-stack developer", "Next.js portfolio", "TypeScript projects", "Python developer", "open-source", "web development", "react", "software engineer"],
+  alternates: {
+    canonical: "/",
+  },
   authors: [{ name: "Shafiuzzaman", url: "https://shafisma.me" }],
   creator: "Shafiuzzaman",
   openGraph: {

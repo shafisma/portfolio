@@ -7,20 +7,22 @@ export interface Project {
   outcome?: string; 
   role?: string;
   tech?: string[];
-  metric?: string; 
+  metric?: string;
+  image?: string;
 }
 
 export const projects: Project[] = [
   {
-    name: "TextShine AI",
-    description: "AI-powered text enhancement tool for improving and polishing written content.",
+    name: "StudyWise AI",
+    description: "AI-powered study enhancement tool for acing exams and mastering subjects.",
     language: "TypeScript",
     stars: 10,
-    url: "https://github.com/shafisma/textshine-ai",
-    outcome: "Instantly polishes messy drafts into professional copy.",
+    url: "https://github.com/shafisma/studywise",
+    outcome: "Practical study aid for students with Virtual exams.",
     role: "Full Stack Developer",
-    tech: ["Next.js", "OpenAI API", "Tailwind"],
-    metric: "10+ GitHub Stars",
+    tech: ["Next.js", "Gemini API", "Tailwind"],
+    metric: "2 GitHub Stars",
+    image: "/studywise.png",
   },
   {
     name: "ThreadMind",
@@ -30,8 +32,9 @@ export const projects: Project[] = [
     url: "https://github.com/shafisma/threadmind",
     outcome: "Transforms chaotic Discord threads into searchable knowledge bases.",
     role: "Backend Developer",
-    tech: ["Python", "Discord.py", "MongoDB"],
+    tech: ["Python", "Discord.py", "Sqlite"],
     metric: "Active in 5+ Servers",
+    image: "https://placehold.co/600x400/1a1a1a/ffffff?text=ThreadMind",
   },
   {
     name: "MatBoard",
@@ -43,6 +46,7 @@ export const projects: Project[] = [
     role: "Full Stack Developer",
     tech: ["Next.js", "Convex", "Clerk"],
     metric: "Real-time Sync",
+    image: "https://placehold.co/600x400/1a1a1a/ffffff?text=MatBoard",
   },
   {
     name: "Quiz Generator",
