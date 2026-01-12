@@ -28,18 +28,34 @@ export function CTASection() {
           </h2>
         </div>
 
-        {/* Right Side: Glowing Orb */}
-        <div className="relative w-48 h-48 md:w-64 md:h-64 flex-shrink-0 mt-8 md:mt-0">
-            {/* Core Glow */}
-            <div className="absolute inset-0 bg-gradient-to-tr from-blue-600 to-purple-600 opacity-20 blur-[50px] rounded-full" />
+        {/* Right Side: Siri-like Glowing Orb */}
+        <div className="relative w-48 h-48 md:w-64 md:h-64 flex-shrink-0 mt-8 md:mt-0 flex items-center justify-center">
+            {/* Outer Ambient Glow */}
+            <div className="absolute inset-0 bg-blue-500/20 blur-[80px] rounded-full animate-pulse" />
             
-            {/* The Ring */}
-            <div className="absolute inset-0 rounded-full border-[1px] border-white/10 shadow-[0_0_30px_rgba(59,130,246,0.3)] flex items-center justify-center">
-                 <div className="w-[90%] h-[90%] rounded-full border-[1px] border-l-blue-500 border-t-purple-500 border-r-transparent border-b-transparent opacity-50 rotate-45" />
+            {/* Wave Layers */}
+            <div className="absolute inset-0 rounded-full overflow-hidden rotate-0">
+                {/* Primary Wave - Blue/Purple */}
+                <div className="absolute -inset-[50%] bg-[conic-gradient(from_0deg,transparent_0deg,#3b82f6_60deg,transparent_120deg,#8b5cf6_180deg,transparent_240deg,#3b82f6_300deg,transparent_360deg)] animate-[spin_4s_linear_infinite] blur-[20px] opacity-70" />
+                
+                {/* Secondary Wave - Cyan/Pink (Counter-rotating) */}
+                <div className="absolute -inset-[50%] bg-[conic-gradient(from_180deg,transparent_0deg,#06b6d4_60deg,transparent_120deg,#ec4899_180deg,transparent_240deg,#06b6d4_300deg,transparent_360deg)] animate-[spin_5s_linear_infinite_reverse] blur-[20px] opacity-60 mix-blend-screen" />
+            
+                 {/* Tertiary fast spinner for movement details */}
+                 <div className="absolute -inset-[50%] bg-[conic-gradient(from_90deg,transparent_0deg,#ffffff_30deg,transparent_180deg)] animate-[spin_2s_linear_infinite] blur-[15px] opacity-30" />
             </div>
 
-            {/* Inner Ring */}
-             <div className="absolute inset-4 rounded-full border border-white/5" />
+            {/* Core Mask (creates the ring effect) */}
+            <div className="absolute inset-[2px] bg-[#0a0a0a] rounded-full flex items-center justify-center z-10 box-border border border-white/5">
+                {/* Inner subtle glow */}
+                <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-blue-500/10 via-purple-500/5 to-cyan-500/10 animate-pulse" />
+                
+                {/* Center dot/content */}
+                <div className="w-4/5 h-4/5 rounded-full border border-white/5 shadow-[inset_0_0_40px_rgba(0,0,0,0.8)] bg-black/40 backdrop-blur-sm" />
+            </div>
+            
+            {/* Shiny overlay on top */}
+            <div className="absolute inset-0 rounded-full shadow-[inset_0_0_20px_rgba(255,255,255,0.05)] z-20 pointer-events-none" />
         </div>
       </div>
     </section>
