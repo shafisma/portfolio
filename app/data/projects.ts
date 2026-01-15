@@ -10,9 +10,23 @@ export interface Project {
   metric?: string;
   image?: string;
   weburl?: string;
+  images?: string[];
 }
 
 export const projects: Project[] = [
+  {
+    name: "Finenzo",
+    description: "Finenzo is a smart expense tracker built with Flutter that helps you manage your personal finances with ease. Track expenses, manage multiple wallets, analyze spending patterns, and export your financial data - all in one app.",
+    language: "Dart",
+    stars: 5,
+    url: "https://github.com/shafisma/finenzo",
+    outcome: "Comprehensive personal finance management on the go.",
+    role: "Mobile App Developer",
+    tech: ["Flutter", "Dart", "Sqflite"],
+    metric: "Multi-wallet Support",
+    image: "/finenzo-mockup/m1.png",
+    images: ["/finenzo-mockup/m2.png", "/finenzo-mockup/m1.png", "/finenzo-mockup/m3.png"],
+  },
   {
     name: "StudyWise AI",
     description: "AI-powered study enhancement tool for acing exams and mastering subjects.",
@@ -25,19 +39,6 @@ export const projects: Project[] = [
     tech: ["Next.js", "Gemini API", "Tailwind"],
     metric: "2 GitHub Stars",
     image: "/studywise.png",
-  },
-  {
-    name: "ThreadMind",
-    description: "A powerful Discord bot designed to revolutionize conversation management and analysis in Discord servers.",
-    language: "Python",
-    stars: 9,
-    url: "https://github.com/shafisma/threadmind",
-    weburl: "https://discord.com/oauth2/authorize?client_id=1452527298124316672&scope=bot%20applications.commands&permissions=534723982656",
-    outcome: "Transforms chaotic Discord threads into searchable knowledge bases.",
-    role: "Backend Developer",
-    tech: ["Python", "Discord.py", "Sqlite"],
-    metric: "Active in 5+ Servers",
-    image: "/threadmind.png",
   },
   {
     name: "NEXUS",

@@ -121,7 +121,7 @@ export function ProjectsSection() {
                       {project.tech?.map((tech) => (
                         <div 
                           key={tech} 
-                          className="px-4 py-2 bg-neutral-900 border border-white/10 rounded-lg text-gray-300 text-sm font-medium flex items-center gap-2 hover:border-accent/50 transition-colors cursor-default"
+                          className="px-4 py-2 bg-neutral-900 border border-white/10 rounded-lg text-gray-300 text-sm font-medium flex items-center gap-2 transition-colors cursor-default"
                         >
                           {/* We don't have specific icons mapped, so we use a generic dot or nothing for now */}
                            <div className="w-1.5 h-1.5 rounded-full bg-accent" />
@@ -135,39 +135,70 @@ export function ProjectsSection() {
                 {/* Visual Side (Right) */}
                 <div className="lg:col-span-7 relative order-1 lg:order-2">
                   {/* Image Container */}
-                  <div className="relative aspect-[16/10] w-full rounded-3xl border border-white/10 overflow-hidden bg-neutral-900/50 group-hover:border-accent/30 transition-all duration-500">
-                      {/* Background Gradient Blob */}
-                      <div className="absolute -inset-4 bg-accent/20 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+                  <div className="relative aspect-[16/10] w-full rounded-3xl border border-white/10 overflow-hidden bg-[#450a0a] ring-1 ring-red-500/30 shadow-[0_0_30px_rgba(239,68,68,0.2)] transition-all duration-500">
+                      
+                      {project.images && project.images.length > 0 ? (
+                         <div className="absolute inset-0 bg-neutral-900/50 flex items-center justify-center">
+                             
+                             {/* Left Image */}
+                             {project.images[0] && (
+                               <div className="absolute left-[10%] top-1/2 -translate-y-1/2 w-[28%] aspect-[9/19] rounded-[min(1rem,2vw)] overflow-hidden border border-white/10 shadow-2xl z-0 opacity-80 -rotate-6 transition-transform hover:-translate-y-1/2 hover:-rotate-12 duration-500 origin-bottom-right">
+                                   <Image 
+                                     src={project.images[0]} 
+                                     alt={`${project.name} Screen 1`}
+                                     fill
+                                     unoptimized
+                                     className="object-cover"
+                                   />
+                               </div>
+                             )}
 
-                      {project.image ? (
-                        <Image 
-                          src={project.image} 
-                          alt={project.name}
-                          fill
-                          unoptimized
-                          className="object-contain transition-transform duration-700 group-hover:scale-105"
-                        />
+                             {/* Right Image */}
+                             {project.images[2] && (
+                               <div className="absolute right-[10%] top-1/2 -translate-y-1/2 w-[28%] aspect-[9/19] rounded-[min(1rem,2vw)] overflow-hidden border border-white/10 shadow-2xl z-0 opacity-80 rotate-6 transition-transform hover:-translate-y-1/2 hover:rotate-12 duration-500 origin-bottom-left">
+                                   <Image 
+                                     src={project.images[2]} 
+                                     alt={`${project.name} Screen 3`}
+                                     fill
+                                     unoptimized
+                                     className="object-cover"
+                                   />
+                               </div>
+                             )}
+
+                             {/* Center Image */}
+                             {project.images[1] && (
+                               <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[30%] aspect-[9/19] rounded-[min(1.5rem,3vw)] overflow-hidden border border-white/10 shadow-2xl z-10 hover:scale-105 transition-transform duration-500">
+                                   <Image 
+                                     src={project.images[1]} 
+                                     alt={`${project.name} Screen 2`}
+                                     fill
+                                     unoptimized
+                                     className="object-cover"
+                                   />
+                               </div>
+                             )}
+                         </div>
+                      ) : project.image ? (
+                         <div className="absolute inset-0 flex items-center justify-center p-8 lg:p-12">
+                             <div className="relative w-full aspect-[16/8.5] h-auto rounded-[1.5rem] border-[10px] border-neutral-950 bg-neutral-950 shadow-2xl overflow-hidden ring-1 ring-white/5">
+
+                                <div className="relative w-full h-full rounded-xl overflow-hidden bg-neutral-900 border border-white/5">
+                                   <Image 
+                                      src={project.image} 
+                                      alt={project.name}
+                                      fill
+                                      unoptimized
+                                      className="object-fill transition-transform duration-700"
+                                    />
+                                </div>
+                             </div>
+                         </div>
                       ) : (
                         <div className="absolute inset-0 bg-neutral-900 flex items-center justify-center">
                            <span className="text-white/10 font-black text-4xl">{project.name}</span>
                         </div>
                       )}
-
-                      {/* Visit Project Overlay Button */}
-                       <a 
-                        href={project.weburl || project.url}
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/40 backdrop-blur-[2px]"
-                      >
-                         <div className="relative group/btn">
-                            <div className="absolute -inset-4 bg-accent/20 rounded-full blur-xl opacity-0 group-hover/btn:opacity-100 transition-all text-white" />
-                            <div className="relative h-32 w-32 rounded-full border border-white/20 bg-neutral-900/90 backdrop-blur-md flex items-center justify-center transform hover:scale-110 transition-transform duration-300 cursor-pointer">
-                                <ExternalLinkIcon className="w-8 h-8 text-white" />
-                                {/* Circular Text could go here if we had a component for it */}
-                            </div>
-                         </div>
-                      </a>
                   </div>
 
                   {/* External Links below image for mobile/easy access */}

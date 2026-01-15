@@ -14,7 +14,7 @@ export function GithubSection() {
             </span>
             <h2 className="text-5xl md:text-6xl font-black text-white tracking-tighter relative z-10">
               GitHub Activity <br />
-              <span className="font-[family-name:--font-lust] text-6xl text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500">
+              <span className="font-serif text-emerald-500 text-6xl ">
                  && Open Source
               </span>
             </h2>
