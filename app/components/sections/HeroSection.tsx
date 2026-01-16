@@ -17,28 +17,28 @@ export function HeroSection() {
 
     tl.from(badgeRef.current, {
       y: -20,
-      opacity: 0,
+      autoAlpha: 0,
       duration: 0.8,
     })
       .from(titleRef.current, {
         y: 50,
-        opacity: 0,
+        autoAlpha: 0,
         duration: 1,
         skewY: 5,
       }, "-=0.4")
       .from(subtitleRef.current, {
         y: 30,
-        opacity: 0,
+        autoAlpha: 0,
         duration: 1,
       }, "-=0.6")
       .from(socialRef.current, {
         y: 20,
-        opacity: 0,
+        autoAlpha: 0,
         duration: 0.8,
       }, "-=0.6")
       .from(ctaRef.current, {
         y: 20,
-        opacity: 0,
+        autoAlpha: 0,
         duration: 0.8,
       }, "-=0.6");
   }, { scope: containerRef });

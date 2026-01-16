@@ -12,7 +12,7 @@ export function SplashScreen({ onFinish }: { onFinish: () => void }) {
     const tl = gsap.timeline({
       onComplete: () => {
         gsap.to(containerRef.current, {
-          opacity: 0,
+          autoAlpha: 0,
           duration: 0.5,
           onComplete: onFinish,
         });
@@ -21,7 +21,7 @@ export function SplashScreen({ onFinish }: { onFinish: () => void }) {
 
     tl.from(".char", {
       y: 100,
-      opacity: 0,
+      autoAlpha: 0,
       duration: 0.8,
       stagger: 0.03,
       ease: "power3.out",
