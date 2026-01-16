@@ -2,13 +2,27 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
-const sections = ["about", "projects", "skills", "contact"];
+const navItems = [
+  { name: "about", href: "/#about" },
+  { name: "projects", href: "/#projects" },
+  { name: "skills", href: "/#skills" },
+  { name: "contact", href: "/#contact" },
+  { name: "labs", href: "/labs" },
+];
 
 export function Navbar() {
-  const [activeSection, setActiveSection] = useState("about");
+  const [activeSection, setActiveSection] = useState("");
+  const pathname = usePathname();
+  const isHome = pathname === "/";
 
   useEffect(() => {
+    if (!isHome) {
+      if (pathname.startsWith("/labs")) setActiveSection("labs");
+      return;
+    }
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -20,17 +34,23 @@ export function Navbar() {
       { threshold: 0.2, rootMargin: "-20% 0px -35% 0px" }
     );
 
-    sections.forEach((section) => {
-      const element = document.getElementById(section);
-      if (element) observer.observe(element);
+    navItems.forEach((item) => {
+      if (item.href.startsWith("/#")) {
+        const sectionId = item.href.replace("/#", "");
+        const element = document.getElementById(sectionId);
+        if (element) observer.observe(element);
+      }
     });
 
     return () => observer.disconnect();
-  }, []);
+  }, [isHome, pathname]);
 
-  const handleScroll = (section: string) => {
-    // setActiveSection(section); // Let the observer handle the state update
-    document.getElementById(section)?.scrollIntoView({ behavior: "smooth" });
+  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, item: typeof navItems[0]) => {
+    if (isHome && item.href.startsWith("/#")) {
+      e.preventDefault();
+      const sectionId = item.href.replace("/#", "");
+      document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth" });
+    }
   };
 
   return (
@@ -45,21 +65,18 @@ export function Navbar() {
               shafi<span className="text-accent">.</span>
             </Link>
             <div className="flex items-center gap-1 sm:gap-2 overflow-x-auto no-scrollbar">
-              {sections.map((section) => (
+              {navItems.map((item) => (
                 <Link
-                  key={section}
-                  href={`#${section}`}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    handleScroll(section);
-                  }}
+                  key={item.name}
+                  href={item.href}
+                  onClick={(e) => handleLinkClick(e, item)}
                   className={`relative capitalize text-xs sm:text-sm font-medium px-3 py-1.5 sm:px-4 sm:py-2 rounded-full transition-all duration-300 whitespace-nowrap ${
-                    activeSection === section
+                    activeSection === item.name
                       ? "text-black bg-white shadow-[0_0_20px_rgba(255,255,255,0.3)]"
                       : "text-white/70 hover:text-white hover:bg-white/10"
                   }`}
                 >
-                  {section}
+                  {item.name}
                 </Link>
               ))}
             </div>
