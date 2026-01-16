@@ -6,6 +6,9 @@ import gsap from "gsap";
 export default function CustomCursor() {
   const cursorRef = useRef<HTMLDivElement>(null); // The small dot
   const followerRef = useRef<HTMLDivElement>(null); // The big ring
+  const textRef = useRef<HTMLSpanElement>(null); // Text inside follower
+
+  const [cursorText, setCursorText] = useState("");
   const [isHovering, setIsHovering] = useState(false);
 
   useEffect(() => {
@@ -18,10 +21,40 @@ export default function CustomCursor() {
 
     const xTo = gsap.quickTo(cursorRef.current, "x", { duration: 0.1, ease: "power3" });
     const yTo = gsap.quickTo(cursorRef.current, "y", { duration: 0.1, ease: "power3" });
-    const xToFollower = gsap.quickTo(followerRef.current, "x", { duration: 0.5, ease: "power2" });
-    const yToFollower = gsap.quickTo(followerRef.current, "y", { duration: 0.5, ease: "power2" });
+    const xToFollower = gsap.quickTo(followerRef.current, "x", { duration: 0.6, ease: "power2" });
+    const yToFollower = gsap.quickTo(followerRef.current, "y", { duration: 0.6, ease: "power2" });
+
+    // Velocity tracking for squeeze effect
+    let lastX = 0;
+    let lastY = 0;
+    let velX = 0;
+    let velY = 0;
 
     const onMouseMove = (e: MouseEvent) => {
+      // Calculate velocity
+      velX = e.clientX - lastX;
+      velY = e.clientY - lastY;
+      lastX = e.clientX;
+      lastY = e.clientY;
+
+      // Basic Squeeze / Rotation based on movement
+      const speed = Math.sqrt(velX ** 2 + velY ** 2);
+      const angle = (Math.atan2(velY, velX) * 180) / Math.PI;
+      
+      // Gentle squeeze effect on the follower
+      const scaleX = gsap.utils.clamp(0.8, 1.2, 1 + speed * 0.005);
+      const scaleY = gsap.utils.clamp(0.8, 1.2, 1 - speed * 0.005);
+      
+      if (!isHovering) {
+        gsap.to(followerRef.current, { 
+            scaleX: scaleX, 
+            scaleY: scaleY, 
+            rotation: angle, 
+            duration: 0.5,
+            overwrite: "auto"
+        });
+      }
+
       xTo(e.clientX);
       yTo(e.clientY);
       xToFollower(e.clientX);
@@ -35,14 +68,15 @@ export default function CustomCursor() {
 
     const onMouseUp = () => {
       gsap.to(cursorRef.current, { scale: 1, duration: 0.2, ease: "elastic.out(1, 0.3)" });
-      gsap.to(followerRef.current, { scale: isHovering ? 2 : 1, duration: 0.2, ease: "elastic.out(1, 0.3)" });
+      gsap.to(followerRef.current, { scale: isHovering ? 3 : 1, duration: 0.2, ease: "elastic.out(1, 0.3)" });
     };
 
     const handleLinkHover = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
       
-      // Check for clickable elements
-      const isLink = 
+      // Check for magnetic/text attributes
+      const customText = target.closest('[data-cursor-text]')?.getAttribute('data-cursor-text');
+      const isInteractive = 
         target.closest('a') || 
         target.closest('button') || 
         target.closest('[role="button"]') ||
@@ -50,28 +84,58 @@ export default function CustomCursor() {
         target.closest('textarea') ||
         window.getComputedStyle(target).cursor === 'pointer';
       
-      if (isLink) {
+      if (customText) {
+         setCursorText(customText);
+         setIsHovering(true);
+         // Text cursor mode
+         gsap.to(followerRef.current, { 
+           width: "auto",
+           height: "auto",
+           padding: "8px 16px",
+           borderRadius: "20px",
+           backgroundColor: "#3b82f6", // Accent blue
+           borderColor: "#3b82f6",
+           mixBlendMode: "normal",
+           scale: 1,
+           opacity: 1,
+           rotation: 0,
+           duration: 0.3 
+         });
+         gsap.to(cursorRef.current, { opacity: 0, duration: 0.2 });
+
+      } else if (isInteractive) {
+        setCursorText("");
         setIsHovering(true);
-        // Animate follower to expand and maybe blend
+        // Link hover mode
         gsap.to(followerRef.current, { 
-          scale: 3, 
+          width: 60,  // Fixed size for hover
+          height: 60,
+          scale: 1,
+          borderRadius: "50%",
           borderWidth: 0,
           backgroundColor: "#fff", 
           mixBlendMode: "difference",
           opacity: 1,
+          rotation: 0,
           duration: 0.3 
         });
-        // Hide small cursor inside
         gsap.to(cursorRef.current, { opacity: 0, duration: 0.2 });
       } else {
+        setCursorText("");
         setIsHovering(false);
-        // Reset properties
+        // Default mode
         gsap.to(followerRef.current, { 
-          scale: 1, 
+          width: 40, 
+          height: 40,
+          scale: 1,
+          borderRadius: "50%",
           borderWidth: "1px",
           backgroundColor: "transparent", 
+          borderColor: "rgba(255,255,255,0.5)",
           mixBlendMode: "normal",
           opacity: 0.5,
+          padding: 0,
+          rotation: 0,
           duration: 0.3 
         });
         gsap.to(cursorRef.current, { opacity: 1, duration: 0.2 });
@@ -81,7 +145,7 @@ export default function CustomCursor() {
     window.addEventListener("mousemove", onMouseMove);
     window.addEventListener("mousedown", onMouseDown);
     window.addEventListener("mouseup", onMouseUp);
-    window.addEventListener("mouseover", handleLinkHover); // Use mouseover to detect entering elements
+    window.addEventListener("mouseover", handleLinkHover);
 
     return () => {
       document.body.style.cursor = "auto";
@@ -90,33 +154,26 @@ export default function CustomCursor() {
       window.removeEventListener("mouseup", onMouseUp);
       window.removeEventListener("mouseover", handleLinkHover);
     };
-  }, []);
-
-  // Update effect when hovering changes to ensure consistency if state desyncs (optional backup)
-  useEffect(() => {
-     if (isHovering && followerRef.current) {
-        gsap.to(followerRef.current, { scale: 3, borderWidth: 0, backgroundColor: "#fff", mixBlendMode: "difference", opacity: 1, duration: 0.3 });
-        gsap.to(cursorRef.current, { opacity: 0, duration: 0.2 });
-     } else if (!isHovering && followerRef.current) {
-        gsap.to(followerRef.current, { scale: 1, borderWidth: "1px", backgroundColor: "transparent", mixBlendMode: "normal", opacity: 0.5, duration: 0.3 });
-        gsap.to(cursorRef.current, { opacity: 1, duration: 0.2 });
-     }
-  }, [isHovering]);
+  }, [isHovering]); // Added isHovering to dependency to update logic if needed, though most logic is in event listener
 
   return (
     <>
       {/* Main Dot */}
       <div
         ref={cursorRef}
-        className="fixed top-0 left-0 w-2.5 h-2.5 bg-accent rounded-full pointer-events-none z-[9999] hidden md:block"
+        className="fixed top-0 left-0 w-2.5 h-2.5 bg-accent rounded-full pointer-events-none z-[9999] hidden md:block" // Increased z-index
         style={{ boxShadow: "0 0 10px var(--accent)" }}
       />
       
       {/* Follower Ring */}
       <div
         ref={followerRef}
-        className="fixed top-0 left-0 w-10 h-10 rounded-full border border-white/50 pointer-events-none z-[9998] hidden md:block transition-colors"
-      />
+        className="fixed top-0 left-0 w-10 h-10 rounded-full border border-white/50 pointer-events-none z-[9998] hidden md:flex items-center justify-center text-black text-[10px] font-bold tracking-widest uppercase overflow-hidden transition-colors"
+      >
+        <span ref={textRef} className={`${cursorText ? 'opacity-100' : 'opacity-0'} transition-opacity duration-200 whitespace-nowrap`}>
+          {cursorText}
+        </span>
+      </div>
     </>
   );
 }
