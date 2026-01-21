@@ -55,8 +55,6 @@ export default function DevToolsBlocker({ children }: { children: React.ReactNod
 
       if (widthThreshold || heightThreshold) {
         setIsDevToolsOpen(true);
-      } else {
-        setIsDevToolsOpen(false);
       }
     };
 
