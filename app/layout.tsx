@@ -103,8 +103,8 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
         <ClientLayout>
-          <SmoothScroll />
           <AnimatedBackground />
+          <SmoothScroll />
           <CustomCursor />
           {children}
           <Analytics />

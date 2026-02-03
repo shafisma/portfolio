@@ -1,6 +1,7 @@
 import { GithubIcon, XIcon, InstagramIcon } from "../icons";
 import { useState } from "react";
 import { Send, Loader2, CheckCircle2, AlertCircle } from "lucide-react";
+import { AnimatedBackground } from "../layout";
 
 const socialLinks = [
   {
@@ -85,6 +86,8 @@ export function ContactSection() {
   };
 
   return (
+    <>
+    <AnimatedBackground />
     <section id="contact" className="relative py-20 sm:py-32 px-4 sm:px-6">
       <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24">
         
@@ -275,6 +278,7 @@ export function ContactSection() {
 
       </div>
     </section>
+    </>
   );
 }
 

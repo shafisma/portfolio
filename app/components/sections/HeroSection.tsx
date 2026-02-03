@@ -3,6 +3,10 @@
 import { useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { AnimatedBackground } from "../layout";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export function HeroSection() {
   const containerRef = useRef<HTMLElement>(null);
@@ -14,6 +18,19 @@ export function HeroSection() {
 
   useGSAP(() => {
     const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+
+    // Scroll snapping for Hero -> About transition
+    ScrollTrigger.create({
+      trigger: containerRef.current,
+      start: "top top",
+      end: "bottom top", 
+      snap: {
+        snapTo: 1, // Snap to the end point (scrolling past the hero)
+        duration: { min: 0.5, max: 1 },
+        delay: 0.1,
+        ease: "power2.inOut"
+      }
+    });
 
     tl.from(badgeRef.current, {
       y: -20,
@@ -44,7 +61,9 @@ export function HeroSection() {
   }, { scope: containerRef });
 
   return (
-    <section ref={containerRef} className="relative min-h-[100dvh] flex items-center justify-center px-4 sm:px-6 pt-20 overflow-hidden">
+    <>
+    <section id="hero" ref={containerRef} className="relative min-h-[100dvh] flex items-center justify-center px-4 sm:px-6 pt-20 overflow-hidden bg-[#EBEBEB]">
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
       {/* Background glow effects - Commented out to use global AnimatedBackground
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-accent/20 rounded-full blur-[100px] pointer-events-none" />
       <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-accent-secondary/10 rounded-full blur-[100px] pointer-events-none" />
@@ -61,9 +80,9 @@ export function HeroSection() {
         </div>
 
         {/* Main heading */}
-        <h1 ref={titleRef} className="text-6xl sm:text-6xl md:text-7xl lg:text-8xl font-black mb-6 sm:mb-8 tracking-tighter leading-[0.95] sm:leading-[0.9] text-white">
+        <h1 ref={titleRef} className="text-6xl sm:text-6xl md:text-7xl lg:text-8xl font-black mb-6 sm:mb-8 tracking-tighter leading-[0.95] sm:leading-[0.9] text-black">
           Building&nbsp;
-          <span className="font-serif italic font-normal text-white/90 pr-0 block sm:inline sm:pr-4">Software</span>
+          <span className="font-serif italic font-normal text-black/90 pr-0 block sm:inline sm:pr-4">Software</span>
           <span className="block mt-2 text-4xl sm:text-4xl md:text-5xl font-bold tracking-tight text-green-500">
             That actually works.
           </span>
@@ -71,8 +90,8 @@ export function HeroSection() {
 
         {/* Subtitle */}
         <div ref={subtitleRef} className="flex flex-col items-center gap-6 mb-8 sm:mb-12 px-2">
-          <p className="text-base sm:text-lg text-gray-400 font-medium max-w-lg mx-auto leading-relaxed">
-            Focused on <span className="font-serif italic text-white">interfaces you can feel</span>. Previously shipped 6+ projects used by communities and teams.
+          <p className="text-base sm:text-lg text-gray-600 font-medium max-w-lg mx-auto leading-relaxed">
+            Focused on <span className="font-serif italic text-black">interfaces you can feel</span>. Previously shipped 6+ projects used by communities and teams.
           </p>
         </div>
 
@@ -85,7 +104,7 @@ export function HeroSection() {
               e.preventDefault();
               document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
             }}
-            className="modern-button items-center justify-center inline-flex shadow-lg shadow-accent/20 w-full sm:w-auto py-3 sm:py-4 text-base sm:text-lg"
+            className="items-center justify-center inline-flex shadow-lg shadow-black/20 w-full sm:w-auto px-8 py-3 sm:py-4 text-base sm:text-lg bg-black text-white rounded-full font-bold hover:bg-gray-800 transition-all hover:-translate-y-0.5"
           >
             Start a project
           </a>
@@ -95,12 +114,13 @@ export function HeroSection() {
               e.preventDefault();
               document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" });
             }}
-            className="inline-flex items-center justify-center gap-2 px-8 py-3 bg-white/5 border border-white/10 rounded-full text-white font-bold text-base sm:text-lg hover:bg-white/10 hover:-translate-y-1 hover:border-white/20 transition-all w-full sm:w-auto backdrop-blur-sm"
+            className="inline-flex items-center justify-center gap-2 px-8 py-3 bg-black/5 border border-black/10 rounded-full text-black font-bold text-base sm:text-lg hover:bg-black/10 hover:-translate-y-1 hover:border-black/20 transition-all w-full sm:w-auto backdrop-blur-sm"
           >
             View projects
           </a>
         </div>
       </div>
     </section>
+    </>
   );
 }

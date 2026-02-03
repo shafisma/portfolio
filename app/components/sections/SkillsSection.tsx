@@ -8,6 +8,7 @@ import {
   SiAdobeillustrator, SiGodotengine, SiZod
 } from "react-icons/si";
 import { GiBearFace } from "react-icons/gi"; // For Zustand (Bear)
+import { AnimatedBackground } from "../layout";
 
 const skillIcons: Record<string, ReactNode> = {
   JavaScript: <SiJavascript />,
@@ -83,6 +84,8 @@ const skillColors: Record<string, { bg: string; text: string; color: string }> =
 
 export function SkillsSection() {
   return (
+    <>
+              <AnimatedBackground />
     <section id="skills" className="relative py-20 sm:py-32 px-4 sm:px-6">
       <div className="max-w-6xl mx-auto">
         {/* Section header */}
@@ -146,5 +149,6 @@ export function SkillsSection() {
         </div>
       </div>
     </section>
+    </>
   );
 }

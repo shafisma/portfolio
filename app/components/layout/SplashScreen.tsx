@@ -6,7 +6,8 @@ import { useGSAP } from "@gsap/react";
 
 export function SplashScreen({ onFinish }: { onFinish: () => void }) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const shimmerRef = useRef<HTMLDivElement>(null);
+  const cardRef = useRef<HTMLDivElement>(null);
+  const dotRef = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
     const tl = gsap.timeline({
@@ -19,43 +20,41 @@ export function SplashScreen({ onFinish }: { onFinish: () => void }) {
       },
     });
 
-    tl.from(".char", {
-      y: 100,
+    // Initial entrance
+    tl.from(cardRef.current, {
+      y: 20,
       autoAlpha: 0,
-      duration: 0.8,
-      stagger: 0.03,
+      duration: 0.6,
       ease: "power3.out",
     })
-      .to(
-        shimmerRef.current,
-        {
-          x: "100%",
-          duration: 0.8,
-          ease: "power2.inOut",
-        },
-        "-=0.6"
-      );
+      // Pulsing dot animation (simulated loading time)
+      .to(dotRef.current, {
+        scale: 1.5,
+        opacity: 0.6,
+        duration: 0.6,
+        repeat: 3, 
+        yoyo: true,
+        ease: "power1.inOut",
+      });
+      
   }, { scope: containerRef });
 
   return (
     <div
       ref={containerRef}
-      className="fixed inset-0 z-[100] flex items-center justify-center bg-black"
+      className="fixed inset-0 z-[100] flex items-center justify-center bg-zinc-950/80 backdrop-blur-xl"
     >
-      <div className="relative overflow-hidden p-4">
-        <h1
-          className="text-4xl sm:text-4xl md:text-9xl font-black tracking-tighter text-white uppercase overflow-hidden"
-        >
-          {"Shafiuzzaman".split("").map((char, index) => (
-            <span key={index} className="char inline-block">
-              {char}
-            </span>
-          ))}
-        </h1>
-        <div
-          ref={shimmerRef}
-          className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full"
+      <div 
+        ref={cardRef}
+        className="bg-white rounded-md px-6 py-3 flex items-center gap-3 shadow-2xl shadow-white/5"
+      >
+        <div 
+          ref={dotRef}
+          className="w-2 h-2 rounded-full bg-indigo-500"
         />
+        <span className="text-zinc-900 font-medium tracking-tight text-lg">
+          Loading
+        </span>
       </div>
     </div>
   );

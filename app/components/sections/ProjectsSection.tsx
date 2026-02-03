@@ -7,6 +7,7 @@ import { Code2, Star } from "lucide-react";
 import React, { useRef, useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { AnimatedBackground } from "../layout";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -67,6 +68,8 @@ export function ProjectsSection() {
   }, []);
 
   return (
+    <>
+          <AnimatedBackground />
     <section ref={sectionRef} id="projects" className="relative py-32 px-4 selection:bg-accent/30">
       <div className="max-w-7xl mx-auto">
         {/* Section header */}
@@ -237,5 +240,6 @@ export function ProjectsSection() {
         </div>
       </div>
     </section>
+    </>
   );
 }

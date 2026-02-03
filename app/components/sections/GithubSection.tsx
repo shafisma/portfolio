@@ -2,9 +2,12 @@
 
 import React from "react";
 import { GitHubCalendar } from "react-github-calendar";
+import { AnimatedBackground } from "../layout";
 
 export function GithubSection() {
   return (
+    <>
+              <AnimatedBackground />
     <section className="relative py-16 px-4">
       <div className="max-w-7xl mx-auto flex flex-col items-center gap-12">
         {/* Section Header */}
@@ -41,5 +44,6 @@ export function GithubSection() {
         </div>
       </div>
     </section>
+    </>
   );
 }

@@ -34,6 +34,10 @@ export function Navbar() {
       { threshold: 0.2, rootMargin: "-20% 0px -35% 0px" }
     );
 
+    // Observe Hero explicitly
+    const heroElement = document.getElementById("hero");
+    if (heroElement) observer.observe(heroElement);
+
     navItems.forEach((item) => {
       if (item.href.startsWith("/#")) {
         const sectionId = item.href.replace("/#", "");
@@ -53,14 +57,24 @@ export function Navbar() {
     }
   };
 
+  const isLightMode = activeSection === "hero" || (isHome && activeSection === "");
+
   return (
     <nav className="fixed top-0 left-0 right-0 z-50">
       <div className="mx-2 mt-2 sm:mx-4 sm:mt-4">
-        <div className="max-w-5xl mx-auto glass rounded-full px-4 py-2 sm:px-6 sm:py-3 transition-all hover:bg-black/80">
+        <div 
+          className={`max-w-5xl mx-auto rounded-full px-4 py-2 sm:px-6 sm:py-3 transition-all duration-300 ${
+            isLightMode 
+              ? "bg-white/70 backdrop-blur-md border border-black/5 shadow-sm hover:bg-white/90" 
+              : "glass hover:bg-black/80"
+          }`}
+        >
           <div className="flex items-center justify-between gap-4">
             <Link
               href="/"
-              className="text-lg sm:text-xl font-black tracking-tight text-white hover:text-accent transition-colors uppercase shrink-0"
+              className={`text-lg sm:text-xl font-black tracking-tight transition-colors uppercase shrink-0 ${
+                isLightMode ? "text-black hover:text-accent" : "text-white hover:text-accent"
+              }`}
             >
               shafi<span className="text-accent">.</span>
             </Link>
@@ -72,8 +86,12 @@ export function Navbar() {
                   onClick={(e) => handleLinkClick(e, item)}
                   className={`relative capitalize text-xs sm:text-sm font-medium px-3 py-1.5 sm:px-4 sm:py-2 rounded-full transition-all duration-300 whitespace-nowrap ${
                     activeSection === item.name
-                      ? "text-black bg-white shadow-[0_0_20px_rgba(255,255,255,0.3)]"
-                      : "text-white/70 hover:text-white hover:bg-white/10"
+                      ? isLightMode
+                        ? "text-white bg-black shadow-lg shadow-black/20"
+                        : "text-black bg-white shadow-[0_0_20px_rgba(255,255,255,0.3)]"
+                      : isLightMode
+                        ? "text-black/70 hover:text-black hover:bg-black/5"
+                        : "text-white/70 hover:text-white hover:bg-white/10"
                   }`}
                 >
                   {item.name}

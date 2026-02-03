@@ -2,9 +2,12 @@
 
 import React from "react";
 import Image from "next/image";
+import { AnimatedBackground } from "../layout";
 
 export function CTASection() {
   return (
+    <>
+              <AnimatedBackground />
     <section className="relative py-24 px-4 overflow-hidden">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-12">
         
@@ -63,5 +66,6 @@ export function CTASection() {
         </div>
       </div>
     </section>
+    </>
   );
 }

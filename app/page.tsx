@@ -4,6 +4,7 @@ import { Navbar, Footer } from "./components/layout";
 import {
   HeroSection,
   AboutSection,
+  MarqueeSection,
   ProjectsSection,
   SkillsSection,
   ContactSection,
@@ -15,14 +16,17 @@ export default function Home() {
   return (
     <div className="min-h-screen text-foreground font-[family-name:var(--font-geist-sans)]">
       <Navbar />
-      <main className="relative z-10 p-4 sm:p-8 space-y-24 container mx-auto">
+      <main className="relative z-10 w-full">
         <HeroSection />
         <AboutSection />
-        <ProjectsSection />
-        <GithubSection />
-        <SkillsSection />
-        <ContactSection />
-        <CTASection />
+        <MarqueeSection />
+        <div className="container mx-auto px-4 sm:px-8 py-24 space-y-24">
+          <ProjectsSection />
+          <GithubSection />
+          <SkillsSection />
+          <ContactSection />
+          <CTASection />
+        </div>
       </main>
       <Footer />
     </div>

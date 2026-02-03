@@ -11,6 +11,7 @@ import { DottedMap } from "@/app/components/ui/dotted-map";
 import { AnalogClock } from "@/app/components/ui/AnalogClock";
 import { TiltCard } from "@/app/components/ui/interactions";
 import gsap from "gsap";
+import { AnimatedBackground } from "../layout";
 
 export function AboutSection() {
   const [isCopied, setIsCopied] = useState(false);
@@ -64,7 +65,9 @@ export function AboutSection() {
   };
 
   return (
-    <section id="about" className="relative py-20 px-4 sm:px-6 text-white overflow-hidden">
+    <>
+    <AnimatedBackground />
+    <section id="about" className="relative py-20 px-4 sm:px-6 text-white overflow-hidden snap-start scroll-mt-24">
       <div className="max-w-7xl mx-auto space-y-8">
         <h2 className="sr-only">About Me</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-min">
@@ -194,6 +197,6 @@ export function AboutSection() {
         </div>
       </div>
     </section>
-
+</>
   );
 }
