@@ -2,243 +2,195 @@
 
 import { projects } from "@/app/data/projects";
 import Image from "next/image";
-import { GithubIcon, ExternalLinkIcon } from "../icons";
-import { Code2, Star } from "lucide-react";
-import React, { useRef, useEffect } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useState, useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ArrowDownRight, Command } from "lucide-react";
+import Link from "next/link";
 import { AnimatedBackground } from "../layout";
 
-gsap.registerPlugin(ScrollTrigger);
-
 export function ProjectsSection() {
-  const sectionRef = useRef<HTMLElement>(null);
-  const titleRef = useRef<HTMLDivElement>(null);
-  const projectsRef = useRef<HTMLDivElement>(null);
+  const [hoveredProject, setHoveredProject] = useState<number | null>(null);
+  const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
+  const listRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      // Title Animation
-      gsap.from(titleRef.current, {
-        scrollTrigger: {
-          trigger: titleRef.current,
-          start: "top 80%",
-        },
-        y: 50,
-        autoAlpha: 0,
-        duration: 1,
-        ease: "power3.out",
-      });
+  const handleMouseMove = (e: React.MouseEvent) => {
+    setCursorPos({ x: e.clientX, y: e.clientY });
+  };
 
-      // Projects Animation
-      const cards = gsap.utils.toArray<HTMLElement>(".project-card");
-      cards.forEach((card, i) => {
-        gsap.from(card, {
-          scrollTrigger: {
-            trigger: card,
-            start: "top 85%",
-          },
-          y: 50,
-          autoAlpha: 0,
-          duration: 0.8,
-          delay: i * 0.1,
-          ease: "power3.out",
-        });
+  const getProjectDimensions = (index: number | null) => {
+    if (index === null) return { width: 0, height: 0 };
+    const project = projects[index];
+    const isMobile = project.tech?.includes("Flutter") || project.role?.includes("Mobile");
+    
+    // Mobile: Taller, narrower
+    // Web: Wider, shorter
+    return isMobile 
+      ? { width: 280, height: 620 } 
+      : { width: 440, height: 320 };
+  };
 
-        // Parallax Effect for Image
-        const imageContainer = card.querySelector(".project-image-container");
-        if (imageContainer) {
-          gsap.fromTo(imageContainer, 
-            { y: 0 },
-            {
-              y: -50, // Move up as we scroll down
-              scrollTrigger: {
-                 trigger: card,
-                 start: "top bottom",
-                 end: "bottom top",
-                 scrub: 1, // Smooth scrubbing
-              }
-            }
-          );
-        }
-      });
-    }, sectionRef);
+  // Calculate safe position for preview card
+  const getPreviewPosition = () => {
+    if (typeof window === "undefined" || hoveredProject === null) return { left: 0, top: 0 };
+    
+    const { width, height } = getProjectDimensions(hoveredProject);
+    const padding = 20; // safe area
+    
+    let left = cursorPos.x + 40; // Default: to the right
+    let top = cursorPos.y - (height / 2); // Default: centered vertically
 
-    return () => ctx.revert();
-  }, []);
+    // Flip to left if too close to right edge
+    if (left + width + padding > window.innerWidth) {
+      left = cursorPos.x - width - 40;
+    }
+    
+    // Constrain horizontal to left edge
+    if (left < padding) left = padding;
+
+    // Constrain vertical
+    if (top + height + padding > window.innerHeight) {
+      top = window.innerHeight - height - padding;
+    }
+    if (top < padding) top = padding;
+
+    return { left, top, right: undefined, bottom: undefined };
+  };
+
+  const { left, top, right, bottom } = getPreviewPosition();
+  const activeDims = getProjectDimensions(hoveredProject);
 
   return (
     <>
-          <AnimatedBackground />
-    <section ref={sectionRef} id="projects" className="relative py-32 px-4 selection:bg-accent/30">
-      <div className="max-w-7xl mx-auto">
-        {/* Section header */}
-        <div ref={titleRef} className="text-center mb-24">
-          <div className="flex flex-col items-center justify-center gap-2">
-            <span className="text-accent text-sm font-bold tracking-[0.2em] uppercase">
-              CRAFTING DIGITAL EXPERIENCES
-            </span>
-            <h2 className="text-5xl md:text-7xl font-black text-white tracking-tighter uppercase relative z-10">
-              Venture <span className="font-serif italic font-thin text-transparent bg-clip-text bg-gradient-to-r from-accent via-accent-secondary to-accent-tertiary normal-case">Showcase</span>
-            </h2>
-          </div>
-          <div className="w-24 h-1 bg-gradient-to-r from-accent to-accent-secondary mt-6 mx-auto rounded-full" />
-        </div>
-        {/* Projects Stack */}
-        <div ref={projectsRef} className="flex flex-col gap-24 md:gap-32">
-          {projects.slice(0, 4).map((project) => {
-            return (
-              <div
-                key={project.name}
-                className="project-card group relative grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center"
-              >
-                
-                {/* Info Side (Left) */}
-                <div className="lg:col-span-5 flex flex-col gap-6 order-2 lg:order-1 text-left">
-                   {/* Project Title with Dash */}
-                   <div className="flex items-center gap-4">
-                      <div className="w-8 h-1 bg-accent rounded-full" />
-                      <h3 className="text-4xl md:text-5xl font-bold text-white">{project.name}</h3>
-                   </div>
-
-                   <p className="text-gray-400 text-lg leading-relaxed">
-                      {project.description}
-                   </p>
-
-                   {/* Features / Outcome List */}
-                   <div className="flex flex-col gap-3 my-4">
-                      {project.outcome && (
-                        <div className="flex items-start gap-3">
-                           <Star className="w-5 h-5 text-accent shrink-0 mt-1" />
-                           <p className="text-gray-300">{project.outcome}</p>
-                        </div>
-                      )}
-                       <div className="flex items-start gap-3">
-                           <Code2 className="w-5 h-5 text-accent shrink-0 mt-1" />
-                           <p className="text-gray-300">{project.role || "Full Stack Development"}</p>
-                        </div>
-                   </div>
-
-                   {/* Tech Stack Buttons */}
-                   <div className="flex flex-wrap gap-3 mt-2">
-                      {project.tech?.map((tech) => (
-                        <div 
-                          key={tech} 
-                          className="px-4 py-2 bg-neutral-900 border border-white/10 rounded-lg text-gray-300 text-sm font-medium flex items-center gap-2 transition-colors cursor-default"
-                        >
-                          {/* We don't have specific icons mapped, so we use a generic dot or nothing for now */}
-                           <div className="w-1.5 h-1.5 rounded-full bg-accent" />
-                          {tech}
-                        </div>
-                      ))}
-                   </div>
-
-                </div>
-
-                {/* Visual Side (Right) */}
-                <div className="lg:col-span-7 relative order-1 lg:order-2">
-                  {/* Image Container */}
-                  <div className="relative aspect-[16/10] w-full rounded-3xl border border-white/10 overflow-hidden bg-[#450a0a] ring-1 ring-red-500/30 shadow-[0_0_30px_rgba(239,68,68,0.2)] transition-all duration-500">
-                      
-                      {project.images && project.images.length > 0 ? (
-                         <div className="absolute inset-0 bg-neutral-900/50 flex items-center justify-center">
-                             
-                             {/* Left Image */}
-                             {project.images[0] && (
-                               <div className="absolute left-[10%] top-1/2 -translate-y-1/2 w-[28%] aspect-[9/19] rounded-[min(1rem,2vw)] overflow-hidden border border-white/10 shadow-2xl z-0 opacity-80 -rotate-6 transition-transform hover:-translate-y-1/2 hover:-rotate-12 duration-500 origin-bottom-right">
-                                   <Image 
-                                     src={project.images[0]} 
-                                     alt={`${project.name} Screen 1`}
-                                     fill
-                                     unoptimized
-                                     className="object-cover"
-                                   />
-                               </div>
-                             )}
-
-                             {/* Right Image */}
-                             {project.images[2] && (
-                               <div className="absolute right-[10%] top-1/2 -translate-y-1/2 w-[28%] aspect-[9/19] rounded-[min(1rem,2vw)] overflow-hidden border border-white/10 shadow-2xl z-0 opacity-80 rotate-6 transition-transform hover:-translate-y-1/2 hover:rotate-12 duration-500 origin-bottom-left">
-                                   <Image 
-                                     src={project.images[2]} 
-                                     alt={`${project.name} Screen 3`}
-                                     fill
-                                     unoptimized
-                                     className="object-cover"
-                                   />
-                               </div>
-                             )}
-
-                             {/* Center Image */}
-                             {project.images[1] && (
-                               <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[30%] aspect-[9/19] rounded-[min(1.5rem,3vw)] overflow-hidden border border-white/10 shadow-2xl z-10 hover:scale-105 transition-transform duration-500">
-                                   <Image 
-                                     src={project.images[1]} 
-                                     alt={`${project.name} Screen 2`}
-                                     fill
-                                     unoptimized
-                                     className="object-cover"
-                                   />
-                               </div>
-                             )}
-                         </div>
-                      ) : project.image ? (
-                         <div className="absolute inset-0 flex items-center justify-center p-8 lg:p-12">
-                             <div className="relative w-full aspect-[16/8.5] h-auto rounded-[1.5rem] border-[10px] border-neutral-950 bg-neutral-950 shadow-2xl overflow-hidden ring-1 ring-white/5">
-
-                                <div className="relative w-full h-full rounded-xl overflow-hidden bg-neutral-900 border border-white/5">
-                                   <Image 
-                                      src={project.image} 
-                                      alt={project.name}
-                                      fill
-                                      unoptimized
-                                      className="object-fill transition-transform duration-700"
-                                    />
-                                </div>
-                             </div>
-                         </div>
-                      ) : (
-                        <div className="absolute inset-0 bg-neutral-900 flex items-center justify-center">
-                           <span className="text-white/10 font-black text-4xl">{project.name}</span>
-                        </div>
-                      )}
-                  </div>
-
-                  {/* External Links below image for mobile/easy access */}
-                   <div className="flex gap-4 mt-6 justify-end">
-                      <a 
-                        href={project.url}
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-2 text-sm text-gray-400 hover:text-white transition-colors"
-                      >
-                         <GithubIcon className="w-5 h-5" />
-                         <span>Source</span>
-                      </a>
-                      <a 
-                         href={project.weburl || project.url}
-                         target="_blank" 
-                         rel="noopener noreferrer"
-                         className="flex items-center gap-2 text-sm text-gray-400 hover:text-white transition-colors"
-                      >
-                         <ExternalLinkIcon className="w-5 h-5" />
-                         <span>Live Demo</span>
-                      </a>
-                   </div>
-                </div>
-
-              </div>
-            );
-          })}
-        </div>
+    <AnimatedBackground />
+    <section id="projects" className="relative py-24 bg-white text-black min-h-screen" onMouseMove={handleMouseMove}>
+      <div className="container mx-auto px-4 sm:px-8">
         
-        {/* Foot note */}
-        <div className="mt-32 text-center">
-            <p className="text-gray-500">
-               And many more internal experiments...
-            </p>
+        {/* Header */}
+        <div className="flex items-start gap-4 mb-16">
+          <ArrowDownRight className="w-12 h-12 stroke-[1.5]" />
+          <h2 className="text-6xl sm:text-7xl font-bold tracking-tight">Projects</h2>
+        </div>
+
+        {/* Project List */}
+        <div ref={listRef} className="flex flex-col border-t border-black">
+          {projects.map((project, index) => (
+            <div key={index}>
+              {/* Mobile View */}
+              <div className="md:hidden flex flex-col items-center border-b border-black py-16">
+                 <h3 className="text-3xl font-normal mb-8 text-center">{project.name}</h3>
+                 
+                 <Link 
+                    href={project.url || project.weburl || "#"}
+                    target="_blank"
+                    className="relative w-full aspect-[7/8] bg-[#2C5D3F] rounded-lg overflow-hidden shadow-xl"
+                 >
+                    {project.image ? (
+                        <Image 
+                            src={project.image} 
+                            alt={project.name}
+                            fill
+                            className="object-contain p-6 rounded-[2rem]"
+                        />
+                    ) : (
+                        <div className="w-full h-full flex items-center justify-center text-white/50">No Image</div>
+                    )}
+                    
+                    <div className="absolute bottom-6 left-6 z-10 flex flex-col items-start gap-2">
+                         <span className="text-white text-3xl font-bold tracking-tight shadow-black/50 drop-shadow-md">{project.name}</span>
+                         <div className="flex flex-wrap gap-2">
+                            {project.tech?.slice(0, 3).map((t) => (
+                                <span key={t} className="px-2 py-0.5 border border-white/40 rounded text-[10px] uppercase font-bold text-white tracking-wider backdrop-blur-sm">
+                                   {t}
+                                </span>
+                            ))}
+                        </div>
+                    </div>
+                 </Link>
+              </div>
+
+              {/* Desktop View */}
+              <Link
+                href={project.url || project.weburl || "#"}
+                target="_blank"
+                className="hidden md:flex group relative flex-col sm:flex-row items-center justify-between p-8 sm:p-12 border-b border-black md:hover:bg-black md:hover:text-white transition-colors duration-300"
+                onMouseEnter={() => setHoveredProject(index)}
+                onMouseLeave={() => setHoveredProject(null)}
+              >
+                <div className="flex items-center gap-6 sm:gap-12 w-full">
+                   <div className="shrink-0 p-3">
+                      <Command className="w-5 h-5" />
+                   </div>
+                   
+                   <div className="flex flex-col sm:flex-row sm:items-baseline gap-2 sm:gap-6 text-xl sm:text-3xl font-normal w-full">
+                      <span className="shrink-0">{project.name}</span>
+                      <span className="hidden sm:inline-block w-8 h-px bg-current opacity-50"></span>
+                      <span className="text-base sm:text-xl opacity-60 font-light">
+                        {project.role} {project.tech && `, ${project.tech.slice(0, 2).join(", ")}`}
+                      </span>
+                   </div>
+                </div>
+
+                <div className="mt-6 sm:mt-0 shrink-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 hidden sm:block">
+                  <span className="inline-flex items-center px-6 py-3 border border-current rounded-md text-xs font-bold uppercase tracking-widest group-hover:bg-white group-hover:text-black transition-colors">
+                    Contact for details
+                  </span>
+                </div>
+              </Link>
+            </div>
+          ))}
         </div>
       </div>
+
+      {/* Floating Image Preview */}
+      <AnimatePresence>
+        {hoveredProject !== null && (
+          <motion.div
+            className="fixed pointer-events-none z-50 overflow-hidden bg-[#F3F2F0] rounded-sm shadow-2xl"
+            initial={{ opacity: 0, scale: 0.9, rotate: -5 }}
+            style={{ 
+                width: activeDims.width,
+                height: activeDims.height 
+            }}
+            animate={{ 
+              opacity: 1, 
+              scale: 1,
+              rotate: 0,
+              left,
+              top,
+              right,
+              bottom
+            }}
+            exit={{ opacity: 0, scale: 0.9 }}
+            transition={{ type: "spring", stiffness: 200, damping: 20 }}
+          >
+            {/* Image Area */}
+            <div className="relative h-[75%] w-full bg-zinc-200">
+               {projects[hoveredProject].image ? (
+                   <Image 
+                     src={projects[hoveredProject].image!} 
+                     alt={projects[hoveredProject].name}
+                     fill
+                     className="object-cover"
+                   />
+               ) : (
+                   <div className="w-full h-full flex items-center justify-center text-zinc-400">No Image</div>
+               )}
+            </div>
+
+            {/* Content Area */}
+            <div className="h-[25%] px-5 flex flex-col justify-center gap-2">
+                <h3 className="text-black font-bold text-lg">{projects[hoveredProject].name}</h3>
+                <div className="flex flex-wrap gap-2">
+                    {projects[hoveredProject].tech?.slice(0, 3).map((t) => (
+                        <span key={t} className="px-2 py-0.5 border border-zinc-300 rounded text-[10px] uppercase font-bold text-zinc-500 tracking-wider">
+                           {t}
+                        </span>
+                    ))}
+                </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
     </>
   );

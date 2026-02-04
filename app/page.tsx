@@ -20,8 +20,9 @@ export default function Home() {
         <HeroSection />
         <AboutSection />
         <MarqueeSection />
+                  <ProjectsSection />
         <div className="container mx-auto px-4 sm:px-8 py-24 space-y-24">
-          <ProjectsSection />
+
           <GithubSection />
           <SkillsSection />
           <ContactSection />
