@@ -133,7 +133,7 @@ export function HeroSection() {
           alt="Scroll Down" 
           width={40} 
           height={40} 
-          className="w-10 h-auto opacity-70"
+          className="w-10 h-auto opacity-100 bg-[#1f1c1c11]"
         />
         <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-black/40 animate-bounce">
           Scroll Down
