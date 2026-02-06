@@ -86,7 +86,7 @@ const jsonLd = {
 };
 
 import ClientLayout from "./components/layout/ClientLayout";
-import { AnimatedBackground, SmoothScroll } from "./components/layout";
+import { AnimatedBackground, SmoothScroll, Footer } from "./components/layout";
 
 export default function RootLayout({
   children,
@@ -94,8 +94,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
+        suppressHydrationWarning
         className={`${geistSans.variable} ${geistMono.variable} ${lustDidone.variable} antialiased cursor-none bg-transparent text-white`}
       >
         <script
@@ -107,6 +108,7 @@ export default function RootLayout({
           <SmoothScroll />
           <CustomCursor />
           {children}
+          <Footer />
           <Analytics />
         </ClientLayout>
       </body>

@@ -1,6 +1,6 @@
 "use client";
 
-import { Navbar, Footer } from "./components/layout";
+import { Navbar } from "./components/layout";
 import {
   HeroSection,
   AboutSection,
@@ -29,7 +29,6 @@ export default function Home() {
           <CTASection />
         </div>
       </main>
-      <Footer />
     </div>
   );
 }
