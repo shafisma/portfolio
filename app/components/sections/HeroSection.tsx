@@ -127,7 +127,7 @@ export function HeroSection() {
         </div>
       </div>
 
-      <div ref={mouseRef} className="absolute bottom-8 left-8 hidden md:flex flex-col items-center gap-2 z-20">
+      <div ref={mouseRef} className="bg-[#1f1c1c11] absolute bottom-8 left-8 hidden md:flex flex-col items-center gap-2 z-20">
         <Image 
           src="/mouse.png" 
           alt="Scroll Down" 
