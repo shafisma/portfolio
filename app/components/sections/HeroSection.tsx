@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef } from "react";
+import Image from "next/image";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -15,6 +16,7 @@ export function HeroSection() {
   const subtitleRef = useRef<HTMLParagraphElement>(null);
   const socialRef = useRef<HTMLDivElement>(null);
   const ctaRef = useRef<HTMLDivElement>(null);
+  const mouseRef = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
     const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
@@ -57,7 +59,11 @@ export function HeroSection() {
         y: 20,
         autoAlpha: 0,
         duration: 0.8,
-      }, "-=0.6");
+      }, "-=0.6")
+      .from(mouseRef.current, {
+        autoAlpha: 0,
+        duration: 1,
+      }, "-=1");
   }, { scope: containerRef });
 
   return (
@@ -119,6 +125,19 @@ export function HeroSection() {
             View projects
           </a>
         </div>
+      </div>
+
+      <div ref={mouseRef} className="absolute bottom-8 left-8 hidden md:flex flex-col items-center gap-2 z-20">
+        <Image 
+          src="/mouse.png" 
+          alt="Scroll Down" 
+          width={40} 
+          height={40} 
+          className="w-10 h-auto opacity-70"
+        />
+        <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-black/40 animate-bounce">
+          Scroll Down
+        </span>
       </div>
     </section>
     </>
