@@ -127,13 +127,13 @@ export function HeroSection() {
         </div>
       </div>
 
-      <div ref={mouseRef} className="bg-[#1f1c1c11] absolute bottom-8 left-8 hidden md:flex flex-col items-center gap-2 z-20">
+      <div ref={mouseRef} className="bg-[#1f1c1c11] rounded-lg absolute bottom-8 left-8 hidden md:flex flex-col items-center gap-2 z-20">
         <Image 
           src="/mouse.png" 
           alt="Scroll Down" 
           width={40} 
           height={40} 
-          className="w-10 h-auto opacity-100 bg-[#1f1c1c11]"
+          className="w-10 h-auto opacity-100 rounded-lg bg-[#1f1c1c11]"
         />
         <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-black/40 animate-bounce">
           Scroll Down
