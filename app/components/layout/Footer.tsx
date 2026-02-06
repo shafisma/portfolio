@@ -71,7 +71,7 @@ export function Footer() {
   return (
     <footer className="relative z-50 bg-[#FF4D29] text-white pt-16 sm:pt-24 pb-8 overflow-hidden font-sans selection:bg-white selection:text-[#FF4D29]">
       <div className="max-w-[1400px] mx-auto px-4 sm:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-12 lg:gap-8 mb-24">
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-12 lg:gap-8 mb-8">
           {/* Column 1: Brand & Newsletter */}
           <div className="flex flex-col gap-8 max-w-sm">
             <div>
@@ -79,35 +79,6 @@ export function Footer() {
               <p className="text-sm leading-relaxed opacity-90">
                 Building software that actually works. Focused on interfaces you can feel.
               </p>
-            </div>
-
-            <div className="flex flex-col gap-3">
-              <label htmlFor="newsletter-email" className="text-sm font-medium">
-                Subscribe to newsletter:
-              </label>
-              <div className="flex relative">
-                <input
-                  id="newsletter-email"
-                  type="email"
-                  placeholder="your email..."
-                  className="w-full bg-white/20 border-0 rounded-lg px-4 py-3 placeholder-white/60 text-sm focus:ring-2 focus:ring-white outline-none transition-all hover:bg-white/30"
-                />
-                <button 
-                  className="absolute right-2 top-1/2 -translate-y-1/2 bg-white/20 p-1.5 rounded-md hover:bg-white text-[#FF4D29] hover:text-[#FF4D29] transition-colors"
-                  aria-label="Subscribe"
-                >
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                        <path d="M5 12h14" />
-                        <path d="m12 5 7 7-7 7" />
-                    </svg>
-                </button>
-              </div>
-            </div>
-
-            <div className="flex gap-6 mt-2">
-              <Clock label="IND" timeZone="Asia/Kolkata" />
-              <Clock label="UK" timeZone="Europe/London" />
-              <Clock label="NY" timeZone="America/New_York" />
             </div>
           </div>
 
@@ -146,19 +117,11 @@ export function Footer() {
               </ul>
             </div>
 
-            <div className="flex flex-col gap-6">
-              <h3 className="text-sm font-bold tracking-wider uppercase opacity-80">Resources</h3>
-              <ul className="flex flex-col gap-3 text-sm font-medium">
-                <li><a href="#" className="hover:opacity-70 transition-opacity">Resume</a></li>
-                <li><a href="#" className="hover:opacity-70 transition-opacity">Contact</a></li>
-                <li><a href="#" className="hover:opacity-70 transition-opacity">Uses</a></li>
-              </ul>
-            </div>
           </div>
         </div>
 
         {/* Bottom Section */}
-        <div className="flex flex-col md:flex-row justify-between items-end gap-8 pt-8 border-t border-white/20">
+        <div className="flex flex-col md:flex-row justify-between items-end gap-8 pt-3 border-t border-white/20">
             <div className="flex flex-col gap-2 text-xs font-medium opacity-80">
                 <p>© {currentYear} Shafi. All rights reserved.</p>
                 <div className="flex gap-4">
@@ -186,7 +149,7 @@ export function Footer() {
         </div>
 
         {/* Big Text */}
-        <div className="relative mt-12 select-none overflow-hidden">
+        <div className="relative mt-0 select-none overflow-hidden">
              <h1 className="text-[17vw] leading-[0.8] font-bold tracking-tighter text-center translate-y-[2vw]">
                 shafisma
              </h1>
