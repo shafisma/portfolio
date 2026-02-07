@@ -23,9 +23,9 @@ export function MarqueeSection() {
   return (
     <section
       ref={containerRef}
-      className="relative z-10 w-full h-[50vh] sm:h-[80vh] overflow-hidden bg-black/5 flex items-center justify-center"
+      className="relative z-10 w-full h-[30vh] sm:h-[40vh] overflow-hidden bg-transparent flex items-center justify-center -mt-10 sm:-mt-20 pointer-events-none"
     >
-        <div className="absolute w-[300%] sm:w-[150%] aspect-square flex items-center justify-center translate-y-[45%] sm:translate-y-[50%]">
+        <div className="absolute w-[810%] sm:w-[220%] aspect-square flex items-center justify-center translate-y-[42%] sm:translate-y-[52%]">
              <svg 
                 viewBox="0 0 1000 1000" 
                 className="w-full h-full animate-[spin_60s_linear_infinite]"
@@ -37,7 +37,7 @@ export function MarqueeSection() {
                         d="M 500, 500 m -500, 0 a 500,500 0 1,1 1000,0 a 500,500 0 1,1 -1000,0" 
                     />
                 </defs>
-                <text fill="currentColor" className="text-[4rem] sm:text-[5rem] font-black uppercase text-white tracking-widest">
+                <text fill="currentColor" className="text-[2.2rem] sm:text-[4rem] font-black uppercase text-white tracking-widest">
                     <textPath 
                         href="#circlePath" 
                         startOffset="0%"
