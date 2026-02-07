@@ -92,7 +92,7 @@ export function HeroSection() {
           <div className="flex flex-wrap justify-center items-center gap-2 sm:gap-4">
             <RotatingText 
               text={["Websites", "Apps", "Designs", "Interfaces"]} 
-              className="inline-block font-serif italic font-normal text-black/90 min-w-[3ch] text-left"
+              className="font-serif italic font-normal text-black/90 min-w-[3ch]"
               duration={2000}
               y={40}
             />
