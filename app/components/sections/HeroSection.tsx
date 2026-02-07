@@ -6,6 +6,7 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { AnimatedBackground } from "../layout";
+import RotatingText from "../ui/RotatingText";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -86,9 +87,18 @@ export function HeroSection() {
         </div>
 
         {/* Main heading */}
-        <h1 ref={titleRef} className="text-6xl sm:text-6xl md:text-7xl lg:text-8xl font-black mb-6 sm:mb-8 tracking-tighter leading-[0.95] sm:leading-[0.9] text-black">
-          Building&nbsp;
-          <span className="font-serif italic font-normal text-black/90 pr-0 block sm:inline sm:pr-4">Software</span>
+        <h1 ref={titleRef} className="text-6xl sm:text-6xl md:text-7xl lg:text-8xl font-black mb-6 sm:mb-8 tracking-tighter leading-[0.95] sm:leading-[0.9] text-black flex flex-col items-center">
+          Making&nbsp;
+          <div className="flex flex-wrap justify-center items-center gap-2 sm:gap-4">
+            <span className="font-serif italic font-normal text-black/90">Software</span>
+            <span className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl text-gray-400 font-light">&</span>
+            <RotatingText 
+              text={["Websites", "Apps", "Designs", "Interfaces"]} 
+              className="text-black inline-block font-sans min-w-[3ch] text-left"
+              duration={2000}
+              y={40}
+            />
+          </div>
           <span className="block mt-2 text-4xl sm:text-4xl md:text-5xl font-bold tracking-tight text-green-500">
             That actually works.
           </span>
