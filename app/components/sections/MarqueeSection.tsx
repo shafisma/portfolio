@@ -1,64 +1,56 @@
 "use client";
 
-import { useRef, useEffect } from "react";
+import { useRef } from "react";
 import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export function MarqueeSection() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const sliderRef = useRef<HTMLDivElement>(null);
+  const textPathRef = useRef<SVGTextPathElement>(null);
 
-  useEffect(() => {
-    const slider = sliderRef.current;
-    if (!slider) return;
-
-    // Initial cloned text for seamless loop logic if needed, 
-    // but for scroll-driven, just moving it enough is fine.
-    
-    gsap.to(slider, {
-      x: "-20%", // Move 20% to the left over the course of the scroll
+  useGSAP(() => {
+    gsap.to(textPathRef.current, {
+      attr: { startOffset: 1200 }, // Animate along the path
+      duration: 20,
       ease: "none",
-      scrollTrigger: {
-        trigger: containerRef.current,
-        start: "top bottom",
-        end: "bottom top",
-        scrub: 1,
-      },
+      repeat: -1,
     });
-
-    // Fade-in reveal
-    gsap.fromTo(
-      containerRef.current,
-      { opacity: 0, y: 100 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 1,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: "top 90%",
-          end: "bottom 20%",
-          toggleActions: "play none none reverse",
-        },
-      }
-    );
-  }, []);
+  }, { scope: containerRef });
 
   return (
-    <section ref={containerRef} className="py-12 sm:py-24 overflow-hidden">
-      <div className="w-full border-y border-white/5 bg-white/5 backdrop-blur-sm -rotate-2 scale-110">
-        <div ref={sliderRef} className="flex whitespace-nowrap will-change-transform">
-          {Array.from({ length: 4 }).map((_, i) => (
-            <div key={i} className="flex items-center gap-8 px-4">
-              <span className="text-6xl sm:text-8xl md:text-9xl font-black uppercase tracking-tighter text-transparent" style={{ WebkitTextStroke: "1px rgba(255,255,255,0.2)" }}>
-                Selected Projects
-              </span>
-              <span className="text-4xl sm:text-6xl text-accent">★</span>
-            </div>
-          ))}
+    <section
+      ref={containerRef}
+      className="relative z-10 w-full h-[50vh] sm:h-[80vh] overflow-hidden bg-black/5 flex items-center justify-center"
+    >
+        <div className="absolute w-[200%] sm:w-[120%] aspect-square flex items-center justify-center translate-y-[30%] sm:translate-y-[40%]">
+             <svg 
+                viewBox="0 0 1000 1000" 
+                className="w-full h-full animate-[spin_60s_linear_infinite]"
+                style={{ transformOrigin: 'center center' }}
+             >
+                <defs>
+                    <path 
+                        id="circlePath" 
+                        d="M 500, 500 m -350, 0 a 350,350 0 1,1 700,0 a 350,350 0 1,1 -700,0" 
+                    />
+                </defs>
+                <text fill="currentColor" className="text-[4rem] sm:text-[5rem] font-black uppercase text-white tracking-widest">
+                    <textPath 
+                        href="#circlePath" 
+                        startOffset="0%"
+                        className="fill-white"
+                        textLength="2200" // Approximate circumference
+                    >
+                         SELECTED PROJECTS <tspan className="fill-green-500 font-bold">-</tspan> SELECTED PROJECTS <tspan className="fill-green-500 font-bold">-</tspan> SELECTED PROJECTS <tspan className="fill-green-500 font-bold">-</tspan> SELECTED PROJECTS <tspan className="fill-green-500 font-bold">-</tspan> 
+                    </textPath>
+                </text>
+             </svg>
         </div>
-      </div>
+        
+        {/* Optional: Add a center element or just leave it as a background effect */}
     </section>
   );
 }
