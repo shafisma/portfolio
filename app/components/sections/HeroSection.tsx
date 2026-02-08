@@ -88,11 +88,12 @@ export function HeroSection() {
 
         {/* Main heading */}
         <h1 ref={titleRef} className="text-6xl sm:text-6xl md:text-7xl lg:text-8xl font-black mb-6 sm:mb-8 tracking-tighter leading-[0.95] sm:leading-[0.9] text-black flex flex-col items-center">
-          Making&nbsp;
-          <div className="flex flex-wrap justify-center items-center gap-2 sm:gap-4">
+          <div className="flex flex-wrap justify-center items-center gap-3 sm:gap-5">
+            <span>Making</span>
             <RotatingText 
-              text={["Websites", "Apps", "Designs", "Interfaces"]} 
-              className="font-serif italic font-normal text-black/90 min-w-[3ch]"
+              text={["Interfaces", "Websites", "Apps", "Designs"]} 
+              className="font-serif italic text-left font-normal text-black/90 min-w-[3ch]"
+              containerClassName="inline-flex"
               duration={2000}
               y={40}
             />
